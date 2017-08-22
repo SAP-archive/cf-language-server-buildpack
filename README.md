@@ -12,13 +12,12 @@ To use this buildpack specify the URI of the repository when pushing the languag
 $ cf push <APP-NAME> -p <ARTIFACT> -b https://github.com/SAP/cf-language-server-buildpack.git
 ```
 
-
 The language servers wrapper application for the push can be taken from: https://github.com/SAP/cloud-language-servers-container
-
 
 # Known Issues
 * Each language server implementation is provided via component in the buildpack. It is currently not extensible from the outside.
 * The configuration of each language server is based on enviroment variables which is a limited format.
+* The location of the language server implementations to be downloaded by the buildpack is not final.
 
 # How to obtain support
 For bugs, questions and ideas for enhancement please open an issue in github.
