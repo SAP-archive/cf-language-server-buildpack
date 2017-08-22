@@ -2,10 +2,10 @@
 
 The `cf-language-server-buildpack`, based on `java-buildpack`, is a [Cloud Foundry](http://www.cloudfoundry.org) buildpack for running JVM-based [language servers wrapper](https://github.com/SAP/cloud-language-servers-container) together with language servers adhering to the [language server protocol](https://github.com/Microsoft/language-server-protocol).  The language servers are supported by configuration of custom components providing download of software together with creation of configuration environment variables per language.
 
-## Requirements
+# Requirements
 There should be an available end point, org and space in CloudFoundry to deploy there the server as a Java application.
 
-## Usage
+# Usage
 To use this buildpack specify the URI of the repository when pushing the language servers wrapper application to Cloud Foundry:
 
 ```bash
