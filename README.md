@@ -27,7 +27,5 @@ For bugs, questions and ideas for enhancement please open an issue in github.
 * Configuration to support multiple server instances in parallel.
 * Support for language server implementation coming from behind a firewall.
 
-```
-
 ## License
 This buildpack is released under version 2.0 of the [Apache License][].
