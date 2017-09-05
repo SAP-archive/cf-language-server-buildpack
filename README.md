@@ -27,5 +27,23 @@ For bugs, questions and ideas for enhancement please open an issue in github.
 * Configuration to support multiple server instances in parallel.
 * Support for language server implementation coming from behind a firewall.
 
-## License
+# How to contribute new language server
+Each language server is represented in the buildpack as a component. The components are described in [components.yml](config/components.yml). A component is composed by a configuration, resources folder and a site that has several versions of the packaged server.
+
+The configuration is structured a yml format and contain the following attributes:
+* Repository of packaged server versions
+* Version of the packaged server to be used
+* Working directory for the server
+* Execution command
+* Communication properties such as protocol and ports
+An example of the component yml file could be found [here](config/language_server_bin_exec_jdt.yml).
+
+The resources folder should contain any resources that should be part of the container when it is created for the use of the specific language server such as execution scripts, configuration files, etc'. For example see: [language_server_bin_exec_jdt](resources/language_server_bin_exec_jdt).
+
+The component site repository contains version list under /index.yml. See for example https://lsp-component-java.cfapps.eu10.hana.ondemand.com/index.yml. It holds several versions with their URL. The packaged server is a tar.gz with internal folder `content` and inside the executables.
+
+Currently Java and NodeJS implementation for language servers are supported. If need to implement new language server in NodeJS consider https://github.com/Microsoft/vscode-languageserver-node as a starting point.
+
+
+# License
 This buildpack is released under version 2.0 of the [Apache License](https://github.com/SAP/cf-language-server-buildpack/LICENSE).
