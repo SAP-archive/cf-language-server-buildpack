@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec ../nodejs/bin/node ./out/server.js
+exec ../nodejs/bin/node ./out/server.js --socket 8999
