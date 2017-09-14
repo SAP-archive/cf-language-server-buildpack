@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec ../nodejs/bin/node ./out/server.js --stdio
+exec ../nodejs/bin/node --debug ./out/server.js --stdio
