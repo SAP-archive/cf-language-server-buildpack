@@ -61,3 +61,4 @@ frameworks:
   - "JavaBuildpack::Framework::LanguageServerNodeCDX"
   - "JavaBuildpack::Framework::LanguageServerNodeESLINT"
 
+# - "JavaBuildpack::Framework::LanguageServerNodeCDX"
