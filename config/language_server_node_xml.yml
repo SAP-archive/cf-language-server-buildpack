@@ -1,0 +1,11 @@
+# TODO License.
+
+# Configuration for the JAVA LSP server component
+---
+version: 0.0.+
+repository_root: "https://lsp-component-xml.cfapps.eu10.hana.ondemand.com/"
+env:
+    workdir: language_server_node_xml/server/
+    exec: language_server_node_xml/launcher.sh
+    ipc:
+        protocol: "stream"

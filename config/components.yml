@@ -60,5 +60,6 @@ frameworks:
   - "JavaBuildpack::Framework::LanguageServerBinExecJDT"
   - "JavaBuildpack::Framework::LanguageServerNodeESLINT"
   - "JavaBuildpack::Framework::LanguageServerNodeJSON"
+  - "JavaBuildpack::Framework::LanguageServerNodeXML"
 
 # - "JavaBuildpack::Framework::LanguageServerNodeCDX"
