@@ -1,0 +1,11 @@
+# TODO License.
+
+# Configuration for the JSON LSP server component
+---
+version: 0.0.+
+repository_root: "https://lsp-component-json.cfapps.eu10.hana.ondemand.com/"
+env:
+    workdir: language_server_node_json/server
+    exec: language_server_node_json/launcher.sh
+    ipc:
+        protocol: "stream"
