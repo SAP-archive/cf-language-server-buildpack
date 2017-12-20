@@ -1,12 +1,12 @@
 # TODO License.
 
-# Configuration for the JAVA LSP server component
+# Configuration for the CDS LSP server component
 ---
-version: 0.0.+
-repository_root: "https://buildpackcomponentrepositorycdx.cfapps.sap.hana.ondemand.com"
+version: 1.*.*
+repository_root: "https://lsp-component-cds.cfapps.eu10.hana.ondemand.com/"
 env:
     workdir: language_server_node_cdx/
     exec: language_server_node_cdx/launcher.sh
     ipc:
-        protocol: "socket-client"
-        clientport: 8765
+        protocol: "stream"
+        
