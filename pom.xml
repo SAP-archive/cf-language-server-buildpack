@@ -5,8 +5,8 @@
 	
 	<packaging>pom</packaging>
 	
-	<groupId>com.sap.devx.cf.ls.buildpack</groupId>
-	<artifactId>sap-java-devx-ls-buildpack</artifactId>	
+	<groupId>com.sap.devx.cf.language.server.buildpack</groupId>
+	<artifactId>sap-devx-language-server-buildpack</artifactId>	
 	<name>SAP language server buildpack </name>
 	<version>0.0.1</version>	
 	<build>
