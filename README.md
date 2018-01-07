@@ -63,7 +63,7 @@ leave the rest empty and press build.
 4. You can find your newly created version in https://nexusrel.wdf.sap.corp:8443/nexus/#nexus-search;quick~language-server-buildpack
 make sure you have sap-devx-language-server-buildpack-{your version}.git.zip file under your version number.
 
-## Pase 3 - deploy to CF
+## Phase 3 - deploy to CF
 1. Go to Jass Project ls_buildpack_deploy : https://jaas.wdf.sap.corp:30437/job/ls_buildpack_deploy/
 2. Press Build with Parameters and fill in the parameters.
 3. Press build and wait to see that the build succeeded.
