@@ -46,5 +46,30 @@ To run component application in the build pack add script, see for example https
 
 Currently Java and NodeJS implementation for language servers are supported. If need to implement new language server in NodeJS consider https://github.com/Microsoft/vscode-languageserver-node as a starting point.
 
+# Stages in buildpack release
+
+## Phase 1 - Update the repository with the new changes
+1. Bring the changes to the master brnach or any other branch of this repository
+2. Make sure that each component yml file point to the desired version
+3. In the pom.xml under project>version : update to the version number - increment by one (example : from 0.0.1 to 0.0.2).
+
+## Phase 2 - depoly to nexus releases
+1. Go to xmake nove in link: https://prod-build10300.wdf.sap.corp/job/devx/job/DevX-cf-language-server-buildpack-SP-REL-common_indirectshipment/build?delay=0sec
+2. Press Build with Parameters and fill in the following:
+Choose build mode: Stage and Promte
+Treeish: master(or other desired branch)
+leave the rest empty and press build.
+3. Wait to see that the build succeeded.
+4. You can find your newly created version in https://nexusrel.wdf.sap.corp:8443/nexus/#nexus-search;quick~language-server-buildpack
+make sure you have sap-devx-language-server-buildpack-{your version}.git.zip file under your version number.
+
+## Pase 3 - deploy to CF
+1. Go to Jass Project ls_buildpack_deploy : https://jaas.wdf.sap.corp:30437/job/ls_buildpack_deploy/
+2. Press Build with Parameters and fill in the parameters.
+3. Press build and wait to see that the build succeeded.
+4. You can enter your space in cf and check that {APP_NAME}-{your version} was deployed.
+
+*Congratulations! you just deployed new version of cf-language-server-buildpack now you can consume it by updating your destention to point to the app newly created buildpack (make sure it will point httpa://{you app genrete url}/ls-buildpack.git)*
+
 # License
 This buildpack is released under version 2.0 of the [Apache License](https://github.com/SAP/cf-language-server-buildpack/LICENSE).
