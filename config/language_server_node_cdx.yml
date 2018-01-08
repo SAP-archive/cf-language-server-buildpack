@@ -2,7 +2,7 @@
 
 # Configuration for the CDS LSP server component
 ---
-version: 1.*.*
+version: 1.+
 repository_root: "https://lsp-component-cds.cfapps.eu10.hana.ondemand.com/"
 env:
     workdir: language_server_node_cdx/
