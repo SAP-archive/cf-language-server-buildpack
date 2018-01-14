@@ -30,8 +30,8 @@ module JavaBuildpack
         nodedir = @droplet.sandbox + "nodejs"
         comp_version = @version
         comp_uri = @uri
-        @version="8.0.0"
-        @uri="https://buildpacks.cloudfoundry.org/dependencies/node/node-8.0.0-linux-x64-ade5a8e5.tgz"
+        @version="8.9.3"
+        @uri="https://buildpacks.cloudfoundry.org/dependencies/node/node-8.9.3-linux-x64-3a0877a4.tgz"              
         download_tar( target_directory=nodedir )
         @version = comp_version
         @uri = comp_uri
