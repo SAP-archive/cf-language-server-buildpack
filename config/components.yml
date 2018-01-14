@@ -62,4 +62,4 @@ frameworks:
   - "JavaBuildpack::Framework::LanguageServerNodeJSON"
   - "JavaBuildpack::Framework::LanguageServerNodeXML"
 
-# - "JavaBuildpack::Framework::LanguageServerNodeCDX"
+  - "JavaBuildpack::Framework::LanguageServerNodeCDX"
