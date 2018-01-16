@@ -1,0 +1,14 @@
+<assembly>
+	<id>git</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>	
+	<fileSets>
+		<fileSet>
+		  <useDefaultExcludes>false</useDefaultExcludes>
+		  <directory>${project.build.directory}/cf-language-server-buildpack.git</directory>
+		  <outputDirectory>/</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>
