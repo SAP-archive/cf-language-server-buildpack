@@ -4,10 +4,10 @@
 ## This script is running from pom.xml in context of target folder as current directory
 ## When running manually - use cd target before running the script
 
-# Create local git repository java-buildpack.git inside current directory
+# Create local git repository LSP-buildpack.git inside current directory
 echo "Create local git repo"
 git init --bare cf-language-server-buildpack.git
-# Setup for controlling the memory used by git (so far not successful) -TODO
+# Setup for controlling the memory used by git
 pushd cf-language-server-buildpack.git
 git config core.packedGitWindowSize 32m
 git config core.packedGitLimit 128m
@@ -28,22 +28,9 @@ git update-index --add --chmod=+x ./bin/compile
 git update-index --add --chmod=+x ./bin/detect
 git update-index --add --chmod=+x ./bin/release
 git update-index --add --chmod=+x ./bin/runtime
-git update-index --add --chmod=+x ./resources/cache/appcontroller/appcontroller
+
 # Push changes to local git
 git add *
 git commit -m "initial"
 git push
 popd
-
-# Make the ./java-buildpack.git repository exposed within a git server app
-# TODO:
-#to make the /java-buildpack.git available in CF, you need to make it accessible somehow. 
-#I used go-git-http-backend:
-# cd ~/go/src/go-git-http-backend
-# ./make.sh
-#cf push devxbp -c './target/javabuildpack/gitserver' -b https://github.com/cloudfoundry/binary-buildpack.git
-
-
-#todo
-# fix cfwizz to not have the jar names hard coded (or use constant jar names and rename them in this script)
-# find solution to expose in CF

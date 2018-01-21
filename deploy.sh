@@ -11,12 +11,11 @@ version=$BUILDPACK_VERSION
 bpArtifactPrefix="/sap-devx-language-server-buildpack-"
 gitZipPrefix="-git.zip"
 
-INSTANCES=5
+INSTANCES=2
 
 completeBPUrl=$baseUrl$version$bpArtifactPrefix$version$gitZipPrefix
 
 # Get buildpack from nexus
-# e.g.: http://nexus.wdf.sap.corp:8081/nexus/content/repositories/deploy.snapshots/com/sap/devx/cf/java/buildpack/sap-java-devx-buildpack/0.0.1-SNAPSHOT/sap-java-devx-buildpack-0.0.1-20171207.091436-2-git.zip
 echo "Get buildpack from nexus:"
 echo $completeBPUrl
 if wget $completeBPUrl -O buildpack/target/ls-buildpack.git.zip
