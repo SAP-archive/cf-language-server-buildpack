@@ -26,17 +26,17 @@ module JavaBuildpack
       def compile
         @logger.debug { "Compile JSON" }
         # Install node js
-        FileUtils.mkdir_p @droplet.root + "nodejs"
-        nodedir = @droplet.sandbox + "nodejs"
-        comp_version = @version
-        comp_uri = @uri
-        @version="8.9.3"
-        @uri="https://buildpacks.cloudfoundry.org/dependencies/node/node-8.9.3-linux-x64-3a0877a4.tgz"
-        download_tar( target_directory=nodedir )
-        @version = comp_version
-        @uri = comp_uri
-        download_zip strip_top_level = false
-        @droplet.copy_resources
+        #FileUtils.mkdir_p @droplet.root + "nodejs"
+        #nodedir = @droplet.sandbox + "nodejs"
+        #comp_version = @version
+        #comp_uri = @uri
+        #@version="8.9.3"
+        #@uri="https://buildpacks.cloudfoundry.org/dependencies/node/node-8.9.3-linux-x64-3a0877a4.tgz"
+        #download_tar( target_directory=nodedir )
+        #@version = comp_version
+        #@uri = comp_uri
+        #download_zip strip_top_level = false
+        #@droplet.copy_resources
 
       end
 
