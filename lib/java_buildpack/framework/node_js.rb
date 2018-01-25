@@ -5,6 +5,7 @@ require 'java_buildpack/component/base_component'
 require 'java_buildpack/framework'
 require 'fileutils'
 require 'java_buildpack/util/dash_case'
+require 'java_buildpack/logging/logger_factory'
 
 module JavaBuildpack
   module Framework
