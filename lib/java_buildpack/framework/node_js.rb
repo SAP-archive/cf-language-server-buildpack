@@ -52,6 +52,12 @@ module JavaBuildpack
           (@application.environment[LSPSERVERS].split(',') & ["cdx", "eslint", "json", "xml"]).any?
       end
 
+      private
+
+      LSPSERVERS = 'lspservers'.freeze
+      
+      private_constant :LSPSERVERS
+
     end
 
   end
