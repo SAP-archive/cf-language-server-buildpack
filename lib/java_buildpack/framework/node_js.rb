@@ -5,7 +5,7 @@ require 'java_buildpack/component/base_component'
 require 'java_buildpack/framework'
 require 'fileutils'
 require 'java_buildpack/util/dash_case'
-require 'java_buildpack/logging/logger_factory'
+#require 'java_buildpack/logging/logger_factory'
 
 module JavaBuildpack
   module Framework
@@ -20,7 +20,7 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
-        @logger.debug { "Compile NodeJS" }
+        #@logger.debug { "Compile NodeJS" }
         # Install node js
         FileUtils.mkdir_p @droplet.root + "nodejs"
         nodedir = @droplet.sandbox + "nodejs"
@@ -37,7 +37,7 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
-        @logger.debug { "Release NodeJS" }
+        #@logger.debug { "Release NodeJS" }
         environment_variables = @droplet.environment_variables
         environment_variables.add_environment_variable 'PATH', "/home/vcap/app/.java-buildpack/#{@droplet.component_id}/nodejs/bin:$PATH"
       end
