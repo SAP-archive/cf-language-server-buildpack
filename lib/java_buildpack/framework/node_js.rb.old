@@ -1,21 +1,24 @@
 # Encoding: utf-8
 # TODO License.
 
-require 'java_buildpack/component/base_component'
+require 'java_buildpack/component/versioned_dependency_component'
 require 'java_buildpack/framework'
 require 'fileutils'
-require 'java_buildpack/util/dash_case'
 
 module JavaBuildpack
   module Framework
 
     # Installs JDT based LSP server component.
-    class NodeJS < JavaBuildpack::Component::BaseComponent
+    class NodeJS < JavaBuildpack::Component::VersionedDependencyComponent
 
-      # (see JavaBuildpack::Component::BaseComponent#detect)
-      def detect
-        enabled? ? NodeJS.to_s.dash_case : nil
+      # Creates an instance
+      #
+      # @param [Hash] context a collection of utilities used the component
+      def initialize(context)
+        super(context)
+        @logger = JavaBuildpack::Logging::LoggerFactory.instance.get_logger NodeJS
       end
+
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
@@ -40,13 +43,16 @@ module JavaBuildpack
         environment_variables = @droplet.environment_variables
         environment_variables.add_environment_variable 'PATH', "/home/vcap/app/.java-buildpack/#{@droplet.component_id}/nodejs/bin:$PATH"
       end
-     
-      private
 
-      def enabled?
+      protected
+
+      # (see JavaBuildpack::Component::VersionedDependencyComponent#supports?)
+      def supports?          
         @application.environment.key?(LSPSERVERS) &&
-        (@application.environment[LSPSERVERS].split(',') & ["cdx", "eslint", "json", "xml"]).any?
+          (@application.environment[LSPSERVERS].split(',') & ["cdx", "eslint", "json", "xml"]).any?
       end
+
+      private
 
       LSPSERVERS = 'lspservers'.freeze
       
