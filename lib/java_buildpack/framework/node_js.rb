@@ -31,7 +31,7 @@ module JavaBuildpack
         #environment_variables = @droplet.environment_variables
         #@droplet.environment_variables.add_environment_variable 'PATH', "/app/.java-buildpack/#{@droplet.component_id}/bin:$PATH"
         #@droplet.environment_variables.add_environment_variable('PATH', "$PATH:/app/.java-buildpack/node_js/bin")
-        @droplet.environment_variables.add_environment_variable 'PATH', "#{@droplet.sandbox}/bin:$PATH"
+        @droplet.environment_variables.add_environment_variable 'PATH', "#{@droplet.component_id}/bin:$PATH"
         #@droplet.environment_variables
         #.add_environment_variable 'PATH', "#{qualify_path(@droplet.component_id)}/bin:$PATH"
       end
