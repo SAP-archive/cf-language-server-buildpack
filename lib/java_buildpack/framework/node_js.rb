@@ -31,7 +31,7 @@ module JavaBuildpack
         download_tar( target_directory=nodedir )
         #@version = comp_version
         #@uri = comp_uri
-        download_zip strip_top_level = false
+        #download_zip strip_top_level = false
         #@droplet.copy_resources
       end
 
