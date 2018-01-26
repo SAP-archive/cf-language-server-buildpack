@@ -12,6 +12,7 @@ module JavaBuildpack
 
     # Installs JDT based LSP server component.
     class NodeJS < JavaBuildpack::Component::BaseComponent
+      include JavaBuildpack::Util
 
       # (see JavaBuildpack::Component::BaseComponent#detect)
       def detect
