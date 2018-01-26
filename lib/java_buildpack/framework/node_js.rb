@@ -30,10 +30,10 @@ module JavaBuildpack
         #@logger.debug { "Release NodeJS" }
         #environment_variables = @droplet.environment_variables
         #@droplet.environment_variables.add_environment_variable 'PATH', "/app/.java-buildpack/#{@droplet.component_id}/bin:$PATH"
-        @droplet.environment_variables.add_environment_variable('PATH', "$PATH:#{@droplet.root}/#{@droplet.component_id}/bin")
+        #@droplet.environment_variables.add_environment_variable('PATH', "$PATH:#{@droplet.root}/#{@droplet.component_id}/bin")
         #@droplet.environment_variables.add_environment_variable 'PATH', "#{@droplet.component_id}/bin:$PATH"
-        #@droplet.environment_variables
-        #.add_environment_variable 'PATH', "#{qualify_path(@droplet.component_id)}/bin:$PATH"
+        @droplet.environment_variables
+        .add_environment_variable 'PATH', "#{qualify_path(@droplet.component_id)}/bin:$PATH"
       end
      
       private
