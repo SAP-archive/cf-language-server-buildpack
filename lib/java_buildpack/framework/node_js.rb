@@ -6,7 +6,6 @@ require 'java_buildpack/framework'
 require 'fileutils'
 require 'java_buildpack/util/dash_case'
 require 'java_buildpack/util/qualify_path'
-#require 'java_buildpack/logging/logger_factory'
 
 module JavaBuildpack
   module Framework
@@ -21,31 +20,19 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
-        #@logger.debug { "Compile NodeJS" }
-        # Install node js
-        #FileUtils.mkdir_p @droplet.root + "nodejs"
-        #nodedir = @droplet.sandbox + "nodejs"
-        #@target_directory = @droplet.sandbox + "nodejs"
-        #comp_version = @version
-        #comp_uri = @uri
         version="8.9.3"
         uri="https://buildpacks.cloudfoundry.org/dependencies/node/node-8.9.3-linux-x64-3a0877a4.tgz"
         download_tar(version, uri)
-        #download_tar( target_directory=nodedir )
-        #@version = comp_version
-        #@uri = comp_uri
-        #download_zip strip_top_level = false
-        #@droplet.copy_resources
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
         #@logger.debug { "Release NodeJS" }
         #environment_variables = @droplet.environment_variables
-        #@droplet.environment_variables.add_environment_variable 'PATH', "/home/vcap/app/.java-buildpack/#{@droplet.component_id}/bin:$PATH"
-
-        @droplet.environment_variables
-        .add_environment_variable 'PATH', "#{qualify_path(@droplet.component_id)}/bin:$PATH"
+        @droplet.environment_variables.add_environment_variable 'PATH', "/app/.java-buildpack/#{@droplet.component_id}/bin:$PATH"
+        #@droplet.environment_variables.add_environment_variable 'PATH', "#{@droplet.sandbox}/bin:$PATH"
+        #@droplet.environment_variables
+        #.add_environment_variable 'PATH', "#{qualify_path(@droplet.component_id)}/bin:$PATH"
       end
      
       private
