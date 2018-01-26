@@ -5,15 +5,13 @@ require 'java_buildpack/component/base_component'
 require 'java_buildpack/framework'
 require 'fileutils'
 require 'java_buildpack/util/dash_case'
-require 'java_buildpack/util/qualify_path'
 
 module JavaBuildpack
   module Framework
 
     # Installs JDT based LSP server component.
     class NodeJS < JavaBuildpack::Component::BaseComponent
-      include JavaBuildpack::Util
-
+     
       # (see JavaBuildpack::Component::BaseComponent#detect)
       def detect
         enabled? ? NodeJS.to_s.dash_case : nil
@@ -28,13 +26,7 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
-        #@logger.debug { "Release NodeJS" }
-        #environment_variables = @droplet.environment_variables
-        @droplet.environment_variables.add_environment_variable 'PATH', "/app/.java-buildpack/#{@droplet.component_id}/bin:$PATH"
-        #@droplet.environment_variables.add_environment_variable('PATH', "$PATH:#{@droplet.root}/#{@droplet.component_id}/bin")
-        #@droplet.environment_variables.add_environment_variable 'PATH', "#{@droplet.component_id}/bin:$PATH"
-        #@droplet.environment_variables
-        #.add_environment_variable 'PATH', "@droplet.root + 'bin')}/bin:$PATH"
+        @droplet.environment_variables.add_environment_variable 'PATH', "/home/vcap/.java-buildpack/#{@droplet.component_id}/bin:$PATH"
       end
      
       private

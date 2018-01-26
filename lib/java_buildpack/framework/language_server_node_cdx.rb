@@ -25,6 +25,8 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         @logger.debug { "Compile CDX" }
+        download_zip strip_top_level = false
+        @droplet.copy_resources
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
@@ -43,7 +45,6 @@ module JavaBuildpack
           environment_variables.add_environment_variable(ENV_PREFIX + key, value)
         end
 
-        environment_variables.add_environment_variable 'PATH', "/home/vcap/app/.java-buildpack/#{@droplet.component_id}/nodejs/bin:$PATH"
       end
 
       protected

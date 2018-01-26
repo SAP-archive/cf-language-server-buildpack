@@ -43,7 +43,6 @@ module JavaBuildpack
           environment_variables.add_environment_variable(ENV_PREFIX + key, value)
         end
 
-        environment_variables.add_environment_variable 'PATH', "/home/vcap/app/.java-buildpack/#{@droplet.component_id}/nodejs/bin:$PATH"
       end
 
       protected
