@@ -22,8 +22,8 @@ module JavaBuildpack
       def compile
         version = "8.9.3"
         uri = "https://buildpacks.cloudfoundry.org/dependencies/node/node-8.9.3-linux-x64-3a0877a4.tgz"
-        targetDir = Pathname.new("/usr")
-        download_tar(version, uri, targetDir)
+        #targetDir = Pathname.new("/usr")
+        download_tar(version, uri)
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
