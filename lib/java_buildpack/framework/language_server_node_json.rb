@@ -4,7 +4,6 @@
 require 'java_buildpack/component/versioned_dependency_component'
 require 'java_buildpack/framework'
 require 'fileutils'
-require 'java_buildpack/util/qualify_path'
 require 'java_buildpack/logging/logger_factory'
 
 module JavaBuildpack
@@ -25,19 +24,8 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         @logger.debug { "Compile JSON" }
-        # Install node js
-        FileUtils.mkdir_p @droplet.root + "nodejs"
-        nodedir = @droplet.sandbox + "nodejs"
-        comp_version = @version
-        comp_uri = @uri
-        @version="8.9.3"
-        @uri="https://buildpacks.cloudfoundry.org/dependencies/node/node-8.9.3-linux-x64-3a0877a4.tgz"
-        download_tar( target_directory=nodedir )
-        @version = comp_version
-        @uri = comp_uri
         download_zip strip_top_level = false
         @droplet.copy_resources
-
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
@@ -56,7 +44,6 @@ module JavaBuildpack
           environment_variables.add_environment_variable(ENV_PREFIX + key, value)
         end
 
-        environment_variables.add_environment_variable 'PATH', "/home/vcap/app/.java-buildpack/#{@droplet.component_id}/nodejs/bin:$PATH"
       end
 
       protected
