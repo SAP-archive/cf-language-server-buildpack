@@ -57,6 +57,7 @@ frameworks:
   - "JavaBuildpack::Framework::SpringInsight"
   - "JavaBuildpack::Framework::YourKitProfiler"
   - "JavaBuildpack::Framework::JavaOpts"
+  - "JavaBuildpack::Framework::NodeJS"
   - "JavaBuildpack::Framework::LanguageServerBinExecJDT"
   - "JavaBuildpack::Framework::LanguageServerNodeESLINT"
   - "JavaBuildpack::Framework::LanguageServerNodeJSON"

@@ -4,7 +4,6 @@
 require 'java_buildpack/component/versioned_dependency_component'
 require 'java_buildpack/framework'
 require 'fileutils'
-require 'java_buildpack/util/qualify_path'
 require 'java_buildpack/logging/logger_factory'
 require 'json'
 
@@ -26,16 +25,6 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         @logger.debug { "Compile ESLINT" }
-        # Install node js
-        FileUtils.mkdir_p @droplet.root + "nodejs"
-        nodedir = @droplet.sandbox + "nodejs"
-        comp_version = @version
-        comp_uri = @uri
-        @version="8.9.3"
-        @uri="https://buildpacks.cloudfoundry.org/dependencies/node/node-8.9.3-linux-x64-3a0877a4.tgz"
-        download_tar( target_directory=nodedir )
-        @version = comp_version
-        @uri = comp_uri
         download_zip strip_top_level = false
 
         # Install additional npm packages:
@@ -49,6 +38,7 @@ module JavaBuildpack
             print "Additional dependencies JSON: #{additional_deps}\n"
             deps_hash = JSON.parse(additional_deps)
             Dir.chdir("#{@droplet.sandbox}/server"){
+              nodedir = @droplet.sandbox + "../node_js"
               deps_hash.each do |key, value|
                 install_dep_command = "#{nodedir}/bin/node #{nodedir}/lib/node_modules/npm/bin/npm-cli.js install #{key}@#{value}"
                 print "Running #{install_dep_command}\n"
@@ -60,7 +50,6 @@ module JavaBuildpack
         end
 
         @droplet.copy_resources
-
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
@@ -79,7 +68,6 @@ module JavaBuildpack
           environment_variables.add_environment_variable(ENV_PREFIX + key, value)
         end
 
-        environment_variables.add_environment_variable 'PATH', "/home/vcap/app/.java-buildpack/#{@droplet.component_id}/nodejs/bin:$PATH"
       end
 
       protected
