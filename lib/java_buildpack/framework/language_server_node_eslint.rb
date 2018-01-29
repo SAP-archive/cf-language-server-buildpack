@@ -38,6 +38,7 @@ module JavaBuildpack
             print "Additional dependencies JSON: #{additional_deps}\n"
             deps_hash = JSON.parse(additional_deps)
             Dir.chdir("#{@droplet.sandbox}/server"){
+              nodedir = @droplet.sandbox + "../node_js"
               deps_hash.each do |key, value|
                 install_dep_command = "#{nodedir}/bin/node #{nodedir}/lib/node_modules/npm/bin/npm-cli.js install #{key}@#{value}"
                 print "Running #{install_dep_command}\n"
