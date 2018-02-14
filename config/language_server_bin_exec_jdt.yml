@@ -9,7 +9,9 @@ repository_root: "https://lsp-component-java-test.cfapps.sap.hana.ondemand.com"
 env:
     workdir: language_server_bin_exec_jdt/
     exec: language_server_bin_exec_jdt/launcher.sh
-    CLIENT_PORT: 8990
+    STDIN_PORT: 8990
+    STDOUT_PORT: 8991
     ipc:
-        protocol: socket-client
-        clientport: 8990
+        protocol: socket
+        inport: 8991
+        outport: 8990
