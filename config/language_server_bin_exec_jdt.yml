@@ -11,6 +11,5 @@ env:
     exec: language_server_bin_exec_jdt/launcher.sh
     CLIENT_PORT: 8990
     ipc:
-        protocol: socket
-        inport: 8990
-        outport: 8990
+        protocol: socket-client
+        clientport: 8990
