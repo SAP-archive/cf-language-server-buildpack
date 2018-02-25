@@ -8,7 +8,7 @@
 	<groupId>com.sap.devx.cf.language.server.buildpack</groupId>
 	<artifactId>sap-devx-language-server-buildpack</artifactId>	
 	<name>SAP language server buildpack </name>
-	<version>0.0.7</version>	
+	<version>0.0.9</version>	
 	<build>
         <plugins>
 		  <plugin>

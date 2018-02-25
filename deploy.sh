@@ -6,7 +6,7 @@ rm -rf buildpack
 mkdir buildpack
 mkdir buildpack/target
 
-baseUrl="https://nexusrel.wdf.sap.corp:8443/nexus/service/local/repositories/deploy.releases/content/com/sap/devx/cf/language/server/buildpack/sap-devx-language-server-buildpack/"
+baseUrl="http://nexusrel.wdf.sap.corp:8081/nexus/service/local/repositories/deploy.releases/content/com/sap/devx/cf/language/server/buildpack/sap-devx-language-server-buildpack/"
 version=$BUILDPACK_VERSION
 bpArtifactPrefix="/sap-devx-language-server-buildpack-"
 gitZipPrefix="-git.zip"
