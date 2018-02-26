@@ -29,7 +29,7 @@ podTemplate(label: podLabel, containers: [
 
         container('build') {
             try {
-                stage("Remove idle lsp applications") {
+                stage("Deploy LSP buildpack") {
                     timestamps {
                         checkout scm
                         sh './deploy.sh'
