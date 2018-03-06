@@ -100,11 +100,11 @@ module JavaBuildpack
 
       def memory_calculation_string(relative_path)
         memory_calculation_string = [qualify_path(memory_calculator, relative_path)]
-        memory_calculation_string << '-totMemory=$MEMORY_LIMIT'
-        memory_calculation_string << "-stackThreads=#{stack_threads @configuration}"
+        memory_calculation_string << '-totMemory=400M'
+        memory_calculation_string << "-stackThreads=12"
         memory_calculation_string << "-loadedClasses=#{class_count @configuration}"
         memory_calculation_string << "-poolType=#{pool_type}"
-        memory_calculation_string << "-vmOptions='#{java_opts}'" if java_opts
+        memory_calculation_string << "-vmOptions='-Xmx100M'"
 
         memory_calculation_string.join(' ')
       end
