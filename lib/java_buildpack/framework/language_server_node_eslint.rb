@@ -18,6 +18,14 @@ module JavaBuildpack
       # @param [Hash] context a collection of utilities used the component
       def initialize(context)
         super(context)
+        if sup?
+          @version = '0.0.2'
+          @uri = @application.environment[ENV_PREFIX + URI]
+        else
+          @version = nil
+          @uri     = nil
+        end
+
         @logger = JavaBuildpack::Logging::LoggerFactory.instance.get_logger LanguageServerNodeESLINT
       end
 
@@ -74,6 +82,10 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::VersionedDependencyComponent#supports?)
       def supports?
+        false
+      end
+
+      def sup?
         @application.environment.key?(LSPSERVERS) &&  @application.environment[LSPSERVERS].split(',').include?("eslint")
       end
 
@@ -94,6 +106,10 @@ module JavaBuildpack
       ADDITIONAL_PACKAGES = 'additionalNpmPackages'.freeze
 
       private_constant :ADDITIONAL_PACKAGES
+
+      URI = 'URI'.freeze
+
+      private_constant :URI
     end
 
   end
