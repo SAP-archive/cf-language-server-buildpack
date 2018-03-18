@@ -8,7 +8,7 @@ require 'java_buildpack/logging/logger_factory'
 module JavaBuildpack
   module Framework
 
-    # Installs ESLINT based LSP server component.
+    # Installs LSP server component.
     class LanguageServerBase < JavaBuildpack::Component::VersionedDependencyComponent
 
       # Creates an instance
@@ -24,7 +24,7 @@ module JavaBuildpack
           @uri     = nil
         end
 
-        @logger = JavaBuildpack::Logging::LoggerFactory.instance.get_logger LanguageServerNodeESLINT
+        @logger = JavaBuildpack::Logging::LoggerFactory.instance.get_logger LanguageServerBase
       end
 
       protected

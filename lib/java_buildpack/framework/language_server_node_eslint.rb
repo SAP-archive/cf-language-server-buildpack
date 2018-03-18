@@ -16,7 +16,6 @@ module JavaBuildpack
         super(context, ENV_PREFIX)
       end
 
-
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         @logger.debug { "Compile ESLINT" }
