@@ -26,24 +26,6 @@ module JavaBuildpack
         @droplet.copy_resources
       end
 
-      # (see JavaBuildpack::Component::BaseComponent#release)
-      def release
-
-        @logger.debug { "Release JSON" }
-        environment_variables = @droplet.environment_variables
-        my_workdir = @configuration["env"]["workdir"]
-        environment_variables.add_environment_variable(ENV_PREFIX + "workdir", my_workdir)
-        my_exec = @configuration["env"]["exec"]
-        environment_variables.add_environment_variable(ENV_PREFIX + "exec", my_exec)
-        
-        my_ipc = @configuration["env"]["ipc"]
-        @logger.debug { "JSON Env vars IPC:#{my_ipc}" }
-        my_ipc.each do |key, value|
-          environment_variables.add_environment_variable(ENV_PREFIX + key, value)
-        end
-
-      end
-
       protected
 
       def sup?

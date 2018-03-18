@@ -46,24 +46,6 @@ module JavaBuildpack
         @droplet.copy_resources
       end
 
-      # (see JavaBuildpack::Component::BaseComponent#release)
-      def release
-
-        @logger.debug { "Release ESLINT" }
-        environment_variables = @droplet.environment_variables
-        myWorkdir = @configuration["env"]["workdir"]
-        environment_variables.add_environment_variable(ENV_PREFIX + "workdir", myWorkdir)
-        myExec = @configuration["env"]["exec"]
-        environment_variables.add_environment_variable(ENV_PREFIX + "exec", myExec)
-        
-        myIpc = @configuration["env"]["ipc"]
-        @logger.debug { "ESLINT Env vars IPC:#{myIpc}" }
-        myIpc.each do |key, value|
-          environment_variables.add_environment_variable(ENV_PREFIX + key, value)
-        end
-
-      end
-
       protected
 
       def sup?
