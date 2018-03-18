@@ -6,6 +6,7 @@ require 'java_buildpack/framework'
 require 'fileutils'
 require 'java_buildpack/logging/logger_factory'
 require 'json'
+require 'java_buildpack/framework/language_server_base'
 
 module JavaBuildpack
   module Framework
