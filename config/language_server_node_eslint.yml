@@ -1,9 +1,3 @@
-# TODO License.
-
-# Configuration for the JAVA LSP server component
----
-version: 0.0.+
-repository_root: "https://lsp-component-eslint-0-0-2.cfapps.eu10.hana.ondemand.com/"
 env:
     workdir: language_server_node_eslint/server/
     exec: language_server_node_eslint/launcher.sh
