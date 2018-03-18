@@ -18,6 +18,7 @@ module JavaBuildpack
         super(context, ENV_PREFIX)
       end
 
+
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         @logger.debug { "Compile JDT"}
@@ -28,18 +29,20 @@ module JavaBuildpack
         FileUtils.cp_r(@droplet.sandbox + '.m2/.', @droplet.root + '.m2' )
         FileUtils.mkdir_p @droplet.root + 'di_ws_root'
         FileUtils.mkdir_p @droplet.root + 'jdt_ws_root'
-        ipc_val = @configuration["env"]["IPC"]
-        @logger.debug { "IPC VAL:#{ipc_val}"}
+        ipcval = @configuration["env"]["IPC"]
+        @logger.debug { "IPC VAL:#{ipcval}"}
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
         environment_variables = @droplet.environment_variables
-        environment_variables.add_environment_variable(ENV_PREFIX + "workdir", @configuration["env"])
-        environment_variables.add_environment_variable(ENV_PREFIX + "exec", @configuration["env"])
-        conf_ipc = @configuration["env"]["ipc"]
-        @logger.debug { "JDT Env vars IPC:#{conf_ipc}" }
-        conf_ipc.each do |key, value|
+        my_workdir = @configuration["env"]["workdir"]
+        environment_variables.add_environment_variable(ENV_PREFIX + "workdir", my_workdir)
+        my_exec = @configuration["env"]["exec"]
+        environment_variables.add_environment_variable(ENV_PREFIX + "exec", my_exec)
+        my_ipc = @configuration["env"]["ipc"]
+        @logger.debug { "JDT Env vars IPC:#{my_ipc}" }
+        my_ipc.each do |key, value|
           environment_variables.add_environment_variable(ENV_PREFIX + key, value)
         end
       end
