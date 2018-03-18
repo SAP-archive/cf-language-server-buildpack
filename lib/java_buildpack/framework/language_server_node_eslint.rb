@@ -11,22 +11,13 @@ module JavaBuildpack
   module Framework
 
     # Installs ESLINT based LSP server component.
-    class LanguageServerNodeESLINT < JavaBuildpack::Component::VersionedDependencyComponent
+    class LanguageServerNodeESLINT < LanguageServerBase
 
       # Creates an instance
       #
       # @param [Hash] context a collection of utilities used the component
       def initialize(context)
-        super(context)
-        if sup?
-          @version = '0.0.2'
-          @uri = @application.environment[ENV_PREFIX + URI]
-        else
-          @version = nil
-          @uri     = nil
-        end
-
-        @logger = JavaBuildpack::Logging::LoggerFactory.instance.get_logger LanguageServerNodeESLINT
+        super(context, ENV_PREFIX)
       end
 
 
@@ -79,11 +70,6 @@ module JavaBuildpack
       end
 
       protected
-
-      # (see JavaBuildpack::Component::VersionedDependencyComponent#supports?)
-      def supports?
-        false
-      end
 
       def sup?
         @application.environment.key?(LSPSERVERS) &&  @application.environment[LSPSERVERS].split(',').include?("eslint")
