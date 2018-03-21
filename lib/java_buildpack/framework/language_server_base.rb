@@ -43,14 +43,13 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
 
-        print  " Release #{@lang}"
+        @logger.debug { "Release #{@lang}" }
         environment_variables = @droplet.environment_variables
         my_workdir = @configuration["env"]["workdir"]
         environment_variables.add_environment_variable(@env_prefix + "workdir", my_workdir)
         my_exec = @configuration["env"]["exec"]
         environment_variables.add_environment_variable(@env_prefix + "exec", my_exec)
 
-        print " workdir: " + my_workdir + " exec: " + my_exec
         my_ipc = @configuration["env"]["ipc"]
         @logger.debug { "#{@lang} Env vars IPC:#{my_ipc}" }
         my_ipc.each do |key, value|
