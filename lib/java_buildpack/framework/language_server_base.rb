@@ -52,7 +52,7 @@ module JavaBuildpack
 
         print " workdir: " + my_workdir + " exec: " + my_exec
         my_ipc = @configuration["env"]["ipc"]
-        @logger.debug { "#{@env_prefix} Env vars IPC:#{my_ipc}" }
+        @logger.debug { "#{@lang} Env vars IPC:#{my_ipc}" }
         my_ipc.each do |key, value|
           environment_variables.add_environment_variable(@env_prefix + key, value)
         end
