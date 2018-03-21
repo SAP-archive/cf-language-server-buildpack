@@ -21,7 +21,7 @@ module JavaBuildpack
         print @lang + " " + @env_prefix + " "
         if sup?
           @version = ''
-          @uri = @application.environment[@env_prefix + URI]
+          @uri = @application.environment[@env_prefix + "URI"]
         else
           @version = nil
           @uri     = nil
