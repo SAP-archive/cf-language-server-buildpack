@@ -15,7 +15,7 @@ module JavaBuildpack
       #
       # @param [Hash] context a collection of utilities used the component
       def initialize(context)
-        super(context, ENV_PREFIX)
+        super(context, "JAVA")
       end
 
 
@@ -32,26 +32,6 @@ module JavaBuildpack
         ipcval = @configuration["env"]["IPC"]
         @logger.debug { "IPC VAL:#{ipcval}"}
       end
-
-      protected
-
-      def sup?
-        @application.environment.key?(LSPSERVERS) && @application.environment[LSPSERVERS].split(',').include?("java")
-      end
-
-      private
-
-      LSPSERVERS = 'lspservers'.freeze
-
-      private_constant :LSPSERVERS
-
-      IPC = 'jdt-ipc'.freeze
-
-      private_constant :IPC
-
-      ENV_PREFIX = 'LSPJAVA_'.freeze
-
-      private_constant :ENV_PREFIX
 
     end
 

@@ -13,7 +13,7 @@ module JavaBuildpack
       #
       # @param [Hash] context a collection of utilities used the component
       def initialize(context)
-        super(context, ENV_PREFIX)
+        super(context, "ESLINT")
       end
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
@@ -26,8 +26,8 @@ module JavaBuildpack
         # in the package.json.
         # For each additional package we run npm install <package>@<version>
         with_timing 'Installing additional npm packages' do
-          additional_deps = @application.environment.key?(ENV_PREFIX + ADDITIONAL_PACKAGES) &&
-            @application.environment[ENV_PREFIX + ADDITIONAL_PACKAGES]
+          additional_deps = @application.environment.key?(@env_prefix + ADDITIONAL_PACKAGES) &&
+            @application.environment[@env_prefix + ADDITIONAL_PACKAGES]
           if additional_deps && !additional_deps.strip.empty?
             print "Additional dependencies JSON: #{additional_deps}\n"
             deps_hash = JSON.parse(additional_deps)
@@ -46,33 +46,12 @@ module JavaBuildpack
         @droplet.copy_resources
       end
 
-      protected
-
-      def sup?
-        @application.environment.key?(LSPSERVERS) &&  @application.environment[LSPSERVERS].split(',').include?("eslint")
-      end
-
       private
-
-      LSPSERVERS = 'lspservers'.freeze
-
-      private_constant :LSPSERVERS
-
-      BINEXEC = 'exec'.freeze
-
-      private_constant :BINEXEC
-
-      ENV_PREFIX = 'LSPESLINT_'.freeze
-
-      private_constant :ENV_PREFIX
 
       ADDITIONAL_PACKAGES = 'additionalNpmPackages'.freeze
 
       private_constant :ADDITIONAL_PACKAGES
 
-      URI = 'URI'.freeze
-
-      private_constant :URI
     end
 
   end
