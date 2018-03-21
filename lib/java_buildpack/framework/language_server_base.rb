@@ -17,14 +17,10 @@ module JavaBuildpack
         super(context)
         @lang = lang
         @env_prefix = "LSP" + lang + "_"
-        print " On initialize! " + lang
-        print " lang=" + @lang + " prefix=" + @env_prefix + " "
         if sup?
           @version = ''
           env_uri = @env_prefix + "URI"
-          print " env_uri=" + env_uri
           @uri = @application.environment[env_uri]
-          print " uri=" + @uri
         else
           @version = nil
           @uri     = nil
@@ -49,7 +45,6 @@ module JavaBuildpack
         environment_variables.add_environment_variable(@env_prefix + "workdir", my_workdir)
         my_exec = @configuration["env"]["exec"]
         environment_variables.add_environment_variable(@env_prefix + "exec", my_exec)
-
         my_ipc = @configuration["env"]["ipc"]
         @logger.debug { "#{@lang} Env vars IPC:#{my_ipc}" }
         my_ipc.each do |key, value|
