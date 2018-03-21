@@ -17,13 +17,14 @@ module JavaBuildpack
         super(context)
         @lang = lang
         @env_prefix = "LSP" + lang + "_"
-        print "On initialize! "
-        print "lang=" + @lang + " prefix=" + @env_prefix + " "
+        print " On initialize! " + lang
+        print " lang=" + @lang + " prefix=" + @env_prefix + " "
         if sup?
           @version = ''
           env_uri = @env_prefix + "URI"
-          print "env_uri=" + env_uri
+          print " env_uri=" + env_uri
           @uri = @application.environment[env_uri]
+          print " uri=" + @uri
         else
           @version = nil
           @uri     = nil
