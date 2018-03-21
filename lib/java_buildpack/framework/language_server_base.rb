@@ -30,7 +30,7 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
-        @logger.debug { "Compile " + @lang }
+        @logger.debug { "Compile #{@lang}" }
         download_zip strip_top_level = false
         @droplet.copy_resources
       end
