@@ -17,9 +17,8 @@ module JavaBuildpack
         super(context)
         @lang = lang
         @env_prefix = "LSP" + lang + "_"
-        print "On initialize!"
-        print @lang
-        print @env_prefix
+        print "On initialize! "
+        print @lang + " " + @env_prefix + " "
         if sup?
           @version = ''
           @uri = @application.environment[@env_prefix + URI]
@@ -27,6 +26,8 @@ module JavaBuildpack
           @version = nil
           @uri     = nil
         end
+
+        print "uri = " + @uri
 
         @logger = JavaBuildpack::Logging::LoggerFactory.instance.get_logger LanguageServerBase
       end
