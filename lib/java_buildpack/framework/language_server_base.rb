@@ -29,8 +29,6 @@ module JavaBuildpack
           @uri     = nil
         end
 
-        print "uri = " + @uri
-
         @logger = JavaBuildpack::Logging::LoggerFactory.instance.get_logger LanguageServerBase
       end
 
