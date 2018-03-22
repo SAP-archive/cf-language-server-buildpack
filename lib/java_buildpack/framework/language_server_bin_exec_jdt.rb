@@ -1,23 +1,21 @@
 # Encoding: utf-8
-# TODO License.
 
-require 'java_buildpack/component/versioned_dependency_component'
 require 'java_buildpack/framework'
 require 'fileutils'
 require 'java_buildpack/logging/logger_factory'
+require 'java_buildpack/framework/language_server_base'
 
 module JavaBuildpack
   module Framework
 
     # Installs JDT based LSP server component.
-    class LanguageServerBinExecJDT < JavaBuildpack::Component::VersionedDependencyComponent
+    class LanguageServerBinExecJDT < LanguageServerBase
 
       # Creates an instance
       #
       # @param [Hash] context a collection of utilities used the component
       def initialize(context)
-        super(context)
-        @logger = JavaBuildpack::Logging::LoggerFactory.instance.get_logger LanguageServerBinExecJDT
+        super(context, "JAVA")
       end
 
 
@@ -34,51 +32,6 @@ module JavaBuildpack
         ipcval = @configuration["env"]["IPC"]
         @logger.debug { "IPC VAL:#{ipcval}"}
       end
-
-      # (see JavaBuildpack::Component::BaseComponent#release)
-      def release
-
-        environment_variables = @droplet.environment_variables
-
-        myWorkdir = @configuration["env"]["workdir"]
-        environment_variables.add_environment_variable(ENV_PREFIX + "workdir", myWorkdir)
-        myExec = @configuration["env"]["exec"]
-        environment_variables.add_environment_variable(ENV_PREFIX + "exec", myExec)
-        portIn = @configuration["env"]["STDIN_PORT"]
-        environment_variables.add_environment_variable(ENV_PREFIX + "STDIN_PORT", portIn)
-        portOut = @configuration["env"]["STDOUT_PORT"]
-        environment_variables.add_environment_variable(ENV_PREFIX + "STDOUT_PORT", portOut)
-        
-        myIpc = @configuration["env"]["ipc"]
-        @logger.debug { "JDT Env vars IPC:#{myIpc}" }
-        myIpc.each do |key, value|
-          environment_variables.add_environment_variable(ENV_PREFIX + key, value)
-        end
-        
-      end
-
-      protected
-
-      # (see JavaBuildpack::Component::VersionedDependencyComponent#supports?)
-      def supports?
-        @application.environment.key?(LSPSERVERS) && @application.environment[LSPSERVERS].split(',').include?("java")
-      end
-
-      private
-
-      LSPSERVERS = 'lspservers'.freeze
-
-      private_constant :LSPSERVERS
-
-      IPC = 'jdt-ipc'.freeze
-
-      private_constant :IPC
-
-      ENV_PREFIX = 'LSPJAVA_'.freeze
-
-      private_constant :ENV_PREFIX
-
-      
 
     end
 
