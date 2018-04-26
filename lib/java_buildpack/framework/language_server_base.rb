@@ -34,6 +34,10 @@ module JavaBuildpack
         @logger.debug { "Compile #{@lang}" }
         download_zip strip_top_level = false
         @droplet.copy_resources
+
+        #TODO move to initialize? 
+        vcap_application = @application.environment.key?(VCAP_APPLICATION) &&  @application.environment[VCAP_APPLICATION]
+        print "vcap_application: #{vcap_application}\n"
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
@@ -68,8 +72,10 @@ module JavaBuildpack
       private
 
       LSPSERVERS = 'lspservers'.freeze
+      VCAP_APPLICATION = 'VCAP_APPLICATION'.freeze
 
       private_constant :LSPSERVERS
+      private_constant :VCAP_APPLICATION
 
     end
 
