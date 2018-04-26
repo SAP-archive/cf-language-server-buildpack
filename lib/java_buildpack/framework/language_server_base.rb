@@ -37,7 +37,7 @@ module JavaBuildpack
 
         #TODO move to initialize? 
         vcap_application = @application.environment.key?(VCAP_APPLICATION) &&  @application.environment[VCAP_APPLICATION]
-        print "vcap_application: #{vcap_application}\n"
+        @logger.debug { "vcap_application: #{vcap_application}" }
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
