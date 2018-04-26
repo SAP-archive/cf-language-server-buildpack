@@ -36,7 +36,7 @@ module JavaBuildpack
         @droplet.copy_resources
 
         #TODO move to initialize? 
-        vcap_application = @application.environment['CF_STACK']
+        vcap_application = @application.environment['VCAP_APPLICATION']
         @logger.debug { "vcap_application: #{vcap_application}" }
       end
 
