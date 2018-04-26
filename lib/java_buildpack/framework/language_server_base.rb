@@ -36,8 +36,11 @@ module JavaBuildpack
         @droplet.copy_resources
 
         #TODO move to initialize? 
-        vcap_application = @application.environment['VCAP_APPLICATION']
-        @logger.debug { "vcap_application: #{vcap_application}" }
+        vcap_application_json = @application.environment[VCAP_APPLICATION]
+        vcap_application = JSON.parse(vcap_application_json)
+        cf_api = vcap_application['cf_api']
+        @logger.debug { "#cf_api: #{cf_api}" }
+        #@logger.debug { "vcap_application: #{vcap_application}" }
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
