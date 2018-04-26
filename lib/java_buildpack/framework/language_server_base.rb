@@ -36,7 +36,7 @@ module JavaBuildpack
         @droplet.copy_resources
 
         #TODO move to initialize? 
-        vcap_application = @application.environment.key?(VCAP_APPLICATION) &&  @application.environment[VCAP_APPLICATION]
+        vcap_application = @application.environment[VCAP_APPLICATION]
         @logger.debug { "vcap_application: #{vcap_application}" }
       end
 
@@ -70,7 +70,7 @@ module JavaBuildpack
       end
 
       private
-
+      
       LSPSERVERS = 'lspservers'.freeze
       VCAP_APPLICATION = 'VCAP_APPLICATION'.freeze
 
