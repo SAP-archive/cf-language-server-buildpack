@@ -21,6 +21,7 @@ module JavaBuildpack
           @version = ''
           env_uri = @env_prefix + "URI"
           @uri = @application.environment[env_uri]
+          @internal = @application.environment[INTERNAL]
         else
           @version = nil
           @uri     = nil
@@ -68,8 +69,10 @@ module JavaBuildpack
       private
 
       LSPSERVERS = 'lspservers'.freeze
-
+      INTERNAL = 'INTERNAL'.freeze
+     
       private_constant :LSPSERVERS
+      private_constant :INTERNAL
 
     end
 
