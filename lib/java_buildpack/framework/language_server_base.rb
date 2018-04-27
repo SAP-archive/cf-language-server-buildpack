@@ -21,7 +21,8 @@ module JavaBuildpack
           @version = ''
           env_uri = @env_prefix + "URI"
           @uri = @application.environment[env_uri]
-          @internal = @application.environment[INTERNAL] == "true" ? true : false
+          # Set internal as true by default
+          @internal = !@application.environment.key?(INTERNAL) || @application.environment[INTERNAL] == "true" ? true : false
         else
           @version = nil
           @uri     = nil
