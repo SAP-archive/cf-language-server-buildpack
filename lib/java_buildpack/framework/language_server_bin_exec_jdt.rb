@@ -24,10 +24,14 @@ module JavaBuildpack
         download_tar
         # Install LSP Server bin from from repository as a Versioned component
         @droplet.copy_resources
-        FileUtils.mkdir_p @droplet.root + '.m2'
-        mvn_settings_file_name = (@internal ? 'internal' : 'external') + '_settings.xml'
-        FileUtils.copy_file(@droplet.sandbox + '.m2/' + mvn_settings_file_name, @droplet.root + '.m2/settings.xml' )
-        #FileUtils.cp_r(@droplet.sandbox + '.m2/.', @droplet.root + '.m2' )
+
+        # a specoa; settings.xml should be used for internal landscape
+        if @internal
+          FileUtils.mkdir_p @droplet.root + '.m2'
+          #mvn_settings_file_name = (@internal ? 'internal' : 'external') + '_settings.xml'
+          #FileUtils.copy_file(@droplet.sandbox + '.m2/' + mvn_settings_file_name, @droplet.root + '.m2/settings.xml' )
+          FileUtils.cp_r(@droplet.sandbox + '.m2/.', @droplet.root + '.m2' )
+        end
         FileUtils.mkdir_p @droplet.root + 'di_ws_root'
         FileUtils.mkdir_p @droplet.root + 'jdt_ws_root'
         ipcval = @configuration["env"]["IPC"]
