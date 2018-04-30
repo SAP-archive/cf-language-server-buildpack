@@ -64,7 +64,7 @@ leave the rest empty and press build.
 make sure you have sap-devx-language-server-buildpack-{your version}.git.zip file under your version number.
 
 ## Phase 3 - deploy to CF
-1. Go to Jass Project ls_buildpack_deploy : https://jaas.wdf.sap.corp:30437/job/ls_buildpack_deploy/
+1. Go to Jass Project ls_buildpack_deploy : https://jaas.wdf.sap.corp:50311/job/lsp_deploy_buidpack/
 2. Press Build with Parameters and fill in the parameters.
 3. Press build and wait to see that the build succeeded.
 4. You can enter your space in cf and check that {APP_NAME}-{your version} was deployed.
