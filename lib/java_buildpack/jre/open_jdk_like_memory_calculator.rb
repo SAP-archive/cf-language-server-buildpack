@@ -1,6 +1,7 @@
-# Encoding: utf-8
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -44,8 +45,7 @@ module JavaBuildpack
           memory_calculator.chmod 0o755
 
           puts "       Loaded Classes: #{class_count @configuration}, " \
-               "Threads: #{stack_threads @configuration}, " \
-               "JAVA_OPTS: '#{java_opts}'"
+               "Threads: #{stack_threads @configuration}"
         end
       end
 
@@ -53,12 +53,14 @@ module JavaBuildpack
       #
       # @return [String] the memory calculation command
       def memory_calculation_command
-        "CALCULATED_MEMORY=$(#{memory_calculation_string(@droplet.root)})"
+        "CALCULATED_MEMORY=$(#{memory_calculation_string(@droplet.root)}) && " \
+        'echo JVM Memory Configuration: $CALCULATED_MEMORY && ' \
+        'JAVA_OPTS="$JAVA_OPTS $CALCULATED_MEMORY"'
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
-        @droplet.java_opts.add_preformatted_options '$CALCULATED_MEMORY'
+        @droplet.environment_variables.add_environment_variable 'MALLOC_ARENA_MAX', 2
       end
 
       protected
@@ -73,7 +75,9 @@ module JavaBuildpack
       def actual_class_count(root)
         (root + '**/*.class').glob.count +
           (root + '**/*.groovy').glob.count +
-          (root + '**/*.jar').glob(File::FNM_DOTMATCH).inject(0) { |a, e| a + archive_class_count(e) }
+          (root + '**/*.jar').glob(File::FNM_DOTMATCH).reject(&:directory?)
+                             .inject(0) { |a, e| a + archive_class_count(e) } +
+          (@droplet.java_home.java_9_or_later? ? 42_215 : 0)
       end
 
       def archive_class_count(archive)
@@ -85,8 +89,8 @@ module JavaBuildpack
         configuration['class_count'] || (0.35 * actual_class_count(root)).ceil
       end
 
-      def java_opts
-        ENV['JAVA_OPTS']
+      def headroom(configuration)
+        configuration['headroom']
       end
 
       def memory_calculator
@@ -101,10 +105,14 @@ module JavaBuildpack
       def memory_calculation_string(relative_path)
         memory_calculation_string = [qualify_path(memory_calculator, relative_path)]
         memory_calculation_string << '-totMemory=$MEMORY_LIMIT'
-        memory_calculation_string << "-stackThreads=#{stack_threads @configuration}"
+
+        headroom = headroom(@configuration)
+        memory_calculation_string << "-headRoom=#{headroom}" if headroom
+
         memory_calculation_string << "-loadedClasses=#{class_count @configuration}"
         memory_calculation_string << "-poolType=#{pool_type}"
-        memory_calculation_string << "-vmOptions='#{java_opts}'" if java_opts
+        memory_calculation_string << "-stackThreads=#{stack_threads @configuration}"
+        memory_calculation_string << '-vmOptions="$JAVA_OPTS"'
 
         memory_calculation_string.join(' ')
       end

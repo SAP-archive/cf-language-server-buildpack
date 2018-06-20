@@ -6,8 +6,10 @@
       <w>appdynamics</w>
       <w>applicationid</w>
       <w>argv</w>
+      <w>aspectsecurity</w>
       <w>atpack</w>
       <w>bootclasspath</w>
+      <w>buildpack</w>
       <w>cacert</w>
       <w>chrystoki</w>
       <w>cklog</w>
@@ -47,6 +49,7 @@
       <w>libcklog</w>
       <w>libcrpytoki</w>
       <w>libcryptoki</w>
+      <w>libjvm</w>
       <w>libruxitagentloader</w>
       <w>libyjpagent</w>
       <w>ljust</w>
@@ -62,6 +65,8 @@
       <w>myhost</w>
       <w>mypass</w>
       <w>myuser</w>
+      <w>networkaddress</w>
+      <w>newrelic</w>
       <w>newrelicagent</w>
       <w>overweaving</w>
       <w>pathnames</w>
@@ -96,7 +101,10 @@
       <w>stubframework</w>
       <w>stubjre</w>
       <w>submodules</w>
+      <w>takipi</w>
       <w>tasklib</w>
+      <w>tcpclient</w>
+      <w>teamserver</w>
       <w>tenanttoken</w>
       <w>tmpdir</w>
       <w>tokenized</w>

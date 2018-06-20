@@ -1,6 +1,7 @@
-# Encoding: utf-8
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,6 +26,7 @@ describe JavaBuildpack::Component::ImmutableJavaHome do
     instance_double(JavaBuildpack::Component::MutableJavaHome,
                     root:             Pathname.new('test-java-home'),
                     java_8_or_later?: true,
+                    java_9_or_later?: true,
                     version:          JavaBuildpack::Util::TokenizedVersion.new('1.2.3_u04'))
   end
 
@@ -39,11 +41,15 @@ describe JavaBuildpack::Component::ImmutableJavaHome do
   end
 
   it 'returns the delegate version' do
-    expect(immutable_java_home.version).to eq(%w(1 2 3 u04))
+    expect(immutable_java_home.version).to eq(%w[1 2 3 u04])
   end
 
   it 'returns the delegate Java 8 or later' do
     expect(immutable_java_home.java_8_or_later?).to be
+  end
+
+  it 'returns the delegate Java 9 or later' do
+    expect(immutable_java_home.java_9_or_later?).to be
   end
 
 end

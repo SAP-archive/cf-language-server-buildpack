@@ -1,6 +1,7 @@
-# Encoding: utf-8
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,8 +15,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require 'digest'
 require 'fileutils'
 require 'java_buildpack/util/cache'
+require 'java_buildpack/util/sanitizer'
 
 module JavaBuildpack
   module Util
@@ -25,6 +28,7 @@ module JavaBuildpack
       #
       # Note: this class is thread-safe, however access to the cached files is not
       class CachedFile
+        include JavaBuildpack::Util
 
         # Creates an instance of the cached file.  Files created and expected by this class will all be rooted at
         # +cache_root+.
@@ -33,7 +37,7 @@ module JavaBuildpack
         # @param [String] uri a uri which uniquely identifies the file in the cache
         # @param [Boolean] mutable whether the cached file should be mutable
         def initialize(cache_root, uri, mutable)
-          key            = URI.escape(uri.sanitize_uri, ':/&')
+          key            = Digest::SHA256.hexdigest uri.sanitize_uri
           @cached        = cache_root + "#{key}.cached"
           @etag          = cache_root + "#{key}.etag"
           @last_modified = cache_root + "#{key}.last_modified"

@@ -1,5 +1,5 @@
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,19 +18,19 @@
 tomcat:
   version: 8.5.+
   repository_root: "{default.repository.root}/tomcat"
-  context_path:
+  context_path: 
   external_configuration_enabled: false
 external_configuration:
   version: 1.+
-  repository_root:
+  repository_root: 
 lifecycle_support:
-  version: 2.+
+  version: 3.+
   repository_root: "{default.repository.root}/tomcat-lifecycle-support"
 logging_support:
-  version: 2.+
+  version: 3.+
   repository_root: "{default.repository.root}/tomcat-logging-support"
 access_logging_support:
-  version: 2.+
+  version: 3.+
   repository_root: "{default.repository.root}/tomcat-access-logging-support"
   access_logging: disabled
 redis_store:
@@ -39,3 +39,6 @@ redis_store:
   database: 0
   timeout: 2000
   connection_pool_size: 2
+geode_store:
+  version: 0.+
+  repository_root: https://repo.spring.io/ext-release-local/geode-store

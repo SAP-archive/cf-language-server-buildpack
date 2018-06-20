@@ -1,6 +1,7 @@
-# Encoding: utf-8
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -47,8 +48,11 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::VersionedDependencyComponent#supports?)
       def supports?
-        jrebel_configured?(@application.root) || jrebel_configured?(@application.root + 'WEB-INF/classes') ||
-          jars_with_jrebel_configured?(@application.root)
+        enabled? && (
+            jrebel_configured?(@application.root) ||
+            jrebel_configured?(@application.root + 'WEB-INF/classes') ||
+            jrebel_configured?(@application.root + 'BOOT-INF/classes') ||
+            jars_with_jrebel_configured?(@application.root))
       end
 
       private
@@ -58,7 +62,9 @@ module JavaBuildpack
       end
 
       def jars_with_jrebel_configured?(root_path)
-        (root_path + '**/*.jar').glob.any? { |jar| !`unzip -l "#{jar}" | grep "rebel-remote\\.xml$"`.strip.empty? }
+        (root_path + '**/*.jar')
+          .glob.reject(&:directory?)
+          .any? { |jar| !`unzip -l "#{jar}" | grep "rebel-remote\\.xml$"`.strip.empty? }
       end
 
       def lib_name
@@ -67,6 +73,10 @@ module JavaBuildpack
 
       def architecture
         `uname -m`.strip
+      end
+
+      def enabled?
+        @configuration['enabled'].nil? || @configuration['enabled']
       end
 
     end

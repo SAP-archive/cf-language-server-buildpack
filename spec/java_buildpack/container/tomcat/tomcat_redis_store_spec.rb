@@ -1,6 +1,7 @@
-# Encoding: utf-8
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +20,7 @@ require 'component_helper'
 require 'java_buildpack/container/tomcat/tomcat_redis_store'
 
 describe JavaBuildpack::Container::TomcatRedisStore do
-  include_context 'component_helper'
+  include_context 'with component help'
 
   let(:component_id) { 'tomcat' }
 
@@ -36,8 +37,8 @@ describe JavaBuildpack::Container::TomcatRedisStore do
   context do
 
     before do
-      allow(services).to receive(:one_service?).with(/session-replication/, %w(hostname host), 'port', 'password')
-        .and_return(true)
+      allow(services).to receive(:one_service?).with(/session-replication/, %w[hostname host], 'port', 'password')
+                                               .and_return(true)
       allow(services).to receive(:find_service).and_return('credentials' => { 'hostname' => 'test-host',
                                                                               'port'     => 'test-port',
                                                                               'password' => 'test-password' })
@@ -71,8 +72,8 @@ describe JavaBuildpack::Container::TomcatRedisStore do
   context do
 
     before do
-      allow(services).to receive(:one_service?).with(/session-replication/, %w(hostname host), 'port', 'password')
-        .and_return(true)
+      allow(services).to receive(:one_service?).with(/session-replication/, %w[hostname host], 'port', 'password')
+                                               .and_return(true)
       allow(services).to receive(:find_service).and_return('credentials' => { 'host'     => 'test-host',
                                                                               'port'     => 'test-port',
                                                                               'password' => 'test-password' })

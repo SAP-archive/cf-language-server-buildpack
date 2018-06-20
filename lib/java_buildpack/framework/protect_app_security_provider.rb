@@ -1,4 +1,5 @@
-# Encoding: utf-8
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
 # Copyright 2013-2016 the original author or authors.
 #
@@ -31,9 +32,12 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         download_zip false
-        @droplet.copy_resources
 
-        credentials = @application.services.find_service(FILTER)['credentials']
+        @droplet.copy_resources
+        @droplet.security_providers << 'com.ingrian.security.nae.IngrianProvider'
+        @droplet.additional_libraries << protect_app_jar if @droplet.java_home.java_9_or_later?
+
+        credentials = @application.services.find_service(FILTER, 'client', 'trusted_certificates')['credentials']
 
         pkcs12 = merge_client_credentials credentials['client']
         add_client_credentials pkcs12
@@ -43,20 +47,22 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
+        if @droplet.java_home.java_9_or_later?
+          @droplet.additional_libraries << protect_app_jar
+        else
+          @droplet.extension_directories << ext_dir
+        end
+
         credentials = @application.services.find_service(FILTER)['credentials']
         java_opts   = @droplet.java_opts
 
         java_opts
-          .add_system_property('java.ext.dirs', ext_dirs)
-          .add_system_property('java.security.properties', @droplet.sandbox + 'java.security')
           .add_system_property('com.ingrian.security.nae.IngrianNAE_Properties_Conf_Filename',
                                @droplet.sandbox + 'IngrianNAE.properties')
           .add_system_property('com.ingrian.security.nae.Key_Store_Location', keystore)
           .add_system_property('com.ingrian.security.nae.Key_Store_Password', password)
 
-        credentials
-          .reject { |key, _| key =~ /^client$/ || key =~ /^trusted_certificates$/ }
-          .each { |key, value| java_opts.add_system_property("com.ingrian.security.nae.#{key}", value) }
+        add_additional_properties(credentials, java_opts)
       end
 
       protected
@@ -71,6 +77,12 @@ module JavaBuildpack
       FILTER = /protectapp/
 
       private_constant :FILTER
+
+      def add_additional_properties(credentials, java_opts)
+        credentials
+          .reject { |key, _| key =~ /^client$/ || key =~ /^trusted_certificates$/ }
+          .each { |key, value| java_opts.add_system_property("com.ingrian.security.nae.#{key}", value) }
+      end
 
       def add_client_credentials(pkcs12)
         shell "#{keytool} -importkeystore -noprompt -destkeystore #{keystore} -deststorepass #{password} " \
@@ -89,11 +101,6 @@ module JavaBuildpack
 
       def ext_dir
         @droplet.sandbox + 'ext'
-      end
-
-      def ext_dirs
-        "#{qualify_path(@droplet.java_home.root + 'lib/ext', @droplet.root)}:" \
-        "#{qualify_path(ext_dir, @droplet.root)}"
       end
 
       def keystore
@@ -119,6 +126,10 @@ module JavaBuildpack
 
       def password
         'nae-keystore-password'
+      end
+
+      def protect_app_jar
+        ext_dir + "IngrianNAE-#{@version}.000.jar"
       end
 
       def write_certificate(certificate)
