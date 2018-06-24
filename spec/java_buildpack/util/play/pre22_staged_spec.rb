@@ -1,6 +1,7 @@
-# Encoding: utf-8
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +20,7 @@ require 'component_helper'
 require 'java_buildpack/util/play/pre22_staged'
 
 describe JavaBuildpack::Util::Play::Pre22Staged do
-  include_context 'component_helper'
+  include_context 'with component help'
 
   context do
 
@@ -104,7 +105,7 @@ describe JavaBuildpack::Util::Play::Pre22Staged do
 
     it 'returns command' do
       expect(play_app.release).to eq('test-var-2 test-var-1 PATH=$PWD/.test-java-home/bin:$PATH ' \
-                                     "#{java_home.as_env_var} exec $PWD/start test-opt-2 test-opt-1 -Dhttp.port=$PORT")
+                                     "#{java_home.as_env_var} exec $PWD/start $JAVA_OPTS")
     end
 
   end

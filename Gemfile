@@ -9,6 +9,7 @@ group :development do
   gem 'rubocop-rspec'
   gem 'rubyzip'
   gem 'tee'
+  gem 'terminal-table'
   gem 'webmock'
   gem 'yard'
 end

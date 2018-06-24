@@ -1,4 +1,5 @@
-# Encoding: utf-8
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
 # Copyright 2013-2016 the original author or authors.
 #
@@ -19,7 +20,7 @@ require 'component_helper'
 require 'java_buildpack/framework/protect_app_security_provider'
 
 describe JavaBuildpack::Framework::ProtectAppSecurityProvider do
-  include_context 'component_helper'
+  include_context 'with component help'
 
   it 'does not detect without protectapp-n/a service' do
     expect(component.detect).to be_nil
@@ -65,6 +66,19 @@ describe JavaBuildpack::Framework::ProtectAppSecurityProvider do
       expect(sandbox + 'ext/Ingrianlog4j-api-2.1.jar').to exist
     end
 
+    it 'adds security provider',
+       cache_fixture: 'stub-protect-app-security-provider.zip' do
+
+      allow(component).to receive(:shell).with(start_with('unzip -qq')).and_call_original
+      allow(component).to receive(:shell).with(start_with('openssl pkcs12'))
+      allow(component).to receive(:shell).with(start_with("#{java_home.root}/bin/keytool -importkeystore"))
+      allow(component).to receive(:shell).with(start_with("#{java_home.root}/bin/keytool -importcert"))
+
+      component.compile
+
+      expect(security_providers.last).to eq('com.ingrian.security.nae.IngrianProvider')
+    end
+
     it 'copies resources',
        cache_fixture: 'stub-protect-app-security-provider.zip' do
 
@@ -78,13 +92,15 @@ describe JavaBuildpack::Framework::ProtectAppSecurityProvider do
       expect(sandbox + 'IngrianNAE.properties').to exist
     end
 
+    it 'adds extension directory' do
+      component.release
+
+      expect(extension_directories).to include(droplet.sandbox + 'ext')
+    end
+
     it 'updates JAVA_OPTS with additional options' do
       component.release
 
-      expect(java_opts).to include('-Djava.ext.dirs=$PWD/.test-java-home/lib/ext:' \
-                                   '$PWD/.java-buildpack/protect_app_security_provider/ext')
-      expect(java_opts).to include('-Djava.security.properties=' \
-                                   '$PWD/.java-buildpack/protect_app_security_provider/java.security')
       expect(java_opts).to include('-Dcom.ingrian.security.nae.IngrianNAE_Properties_Conf_Filename=' \
                                    '$PWD/.java-buildpack/protect_app_security_provider/IngrianNAE.properties')
       expect(java_opts).to include('-Dcom.ingrian.security.nae.Key_Store_Location=' \
@@ -95,6 +111,43 @@ describe JavaBuildpack::Framework::ProtectAppSecurityProvider do
 
       expect(java_opts).not_to include(start_with('-Dcom.ingrian.security.nae.client'))
       expect(java_opts).not_to include(start_with('-Dcom.ingrian.security.nae.trusted_certificates'))
+    end
+
+    context do
+
+      let(:java_home_delegate) do
+        delegate         = JavaBuildpack::Component::MutableJavaHome.new
+        delegate.root    = app_dir + '.test-java-home'
+        delegate.version = JavaBuildpack::Util::TokenizedVersion.new('9.0.0')
+
+        delegate
+      end
+
+      it 'adds JAR to classpath during compile in Java 9',
+         cache_fixture: 'stub-protect-app-security-provider.zip' do
+
+        allow(component).to receive(:shell).with(start_with('unzip -qq')).and_call_original
+        allow(component).to receive(:shell).with(start_with('openssl pkcs12'))
+        allow(component).to receive(:shell).with(start_with("#{java_home.root}/bin/keytool -importkeystore"))
+        allow(component).to receive(:shell).with(start_with("#{java_home.root}/bin/keytool -importcert"))
+
+        component.compile
+
+        expect(additional_libraries).to include(droplet.sandbox + "ext/IngrianNAE-#{version}.000.jar")
+      end
+
+      it 'adds JAR to classpath during release in Java 9' do
+        component.release
+
+        expect(additional_libraries).to include(droplet.sandbox + "ext/IngrianNAE-#{version}.000.jar")
+      end
+
+      it 'adds does not add extension directory in Java 9' do
+        component.release
+
+        expect(extension_directories).not_to include(droplet.sandbox + 'ext')
+      end
+
     end
 
   end

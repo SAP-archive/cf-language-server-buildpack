@@ -1,6 +1,7 @@
-# Encoding: utf-8
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,6 +16,7 @@
 # limitations under the License.
 
 require 'java_buildpack'
+require 'java_buildpack/util/colorize'
 require 'java_buildpack/util/configuration_utils'
 require 'java_buildpack/util/to_b'
 
@@ -46,9 +48,9 @@ module JavaBuildpack
     # Creates a new instance
     def initialize(should_log = true)
       configuration = JavaBuildpack::Util::ConfigurationUtils.load('version', true, should_log)
-      @hash         = configuration['hash'] || hash
+      @hash         = configuration['hash'] || calculate_hash
       @offline      = configuration['offline'] || ENV['OFFLINE'].to_b
-      @remote       = configuration['remote'] || remote
+      @remote       = configuration['remote'] || calculate_remote
       @version      = configuration['version'] || ENV['VERSION'] || @hash
 
       return unless should_log
@@ -84,15 +86,15 @@ module JavaBuildpack
     # @return [String] a +String+ representation of the version
     def to_s(human_readable = true)
       s = []
-      s << @version if @version
-      s << (human_readable ? '(offline)' : 'offline') if @offline
+      s << @version.blue if @version
+      s << (human_readable ? '(offline)'.blue : 'offline') if @offline
 
       if remote_string
         s << '|' if @version && human_readable
         s << remote_string
       end
 
-      s << 'unknown' if s.empty?
+      s << 'unknown'.yellow if s.empty?
       s.join(human_readable ? ' ' : '-')
     end
 
@@ -102,8 +104,12 @@ module JavaBuildpack
 
     private_constant :GIT_DIR
 
-    def remote_string
-      "#{@remote}##{@hash}" if @remote && !@remote.empty? && @hash && !@hash.empty?
+    def calculate_hash
+      git 'rev-parse --short HEAD'
+    end
+
+    def calculate_remote
+      git 'config --get remote.origin.url'
     end
 
     def git(command)
@@ -122,12 +128,8 @@ module JavaBuildpack
       GIT_DIR.exist?
     end
 
-    def hash
-      git 'rev-parse --short HEAD'
-    end
-
-    def remote
-      git 'config --get remote.origin.url'
+    def remote_string
+      "#{@remote}##{@hash}" if @remote && !@remote.empty? && @hash && !@hash.empty?
     end
 
   end
