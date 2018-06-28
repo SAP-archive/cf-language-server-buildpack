@@ -7,7 +7,7 @@ module JavaBuildpack
   module Framework
 
     # Installs JDT based LSP server component.
-    class LanguageServerNodeNodejs < LanguageServerBase
+    class LanguageServerNodeNODEJS < LanguageServerBase
 
       # Creates an instance
       #
