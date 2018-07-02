@@ -32,7 +32,7 @@ module JavaBuildpack
 
       def enabled?
         @application.environment.key?(LSPSERVERS) &&
-        (@application.environment[LSPSERVERS].split(',') & ["cdx", "eslint", "json", "xml"]).any?
+        (@application.environment[LSPSERVERS].split(',') & ["cdx", "eslint", "json", "jsts", "xml"]).any?
       end
 
       LSPSERVERS = 'lspservers'.freeze
