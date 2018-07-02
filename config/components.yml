@@ -76,4 +76,4 @@ frameworks:
   - "JavaBuildpack::Framework::LanguageServerNodeXML"
 
   - "JavaBuildpack::Framework::LanguageServerNodeCDX"
-  - "JavaBuildpack::Framework::LanguageServerNodeJS_TS"
+  - "JavaBuildpack::Framework::LanguageServerNodeJSTS"
