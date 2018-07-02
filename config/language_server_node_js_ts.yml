@@ -1,0 +1,5 @@
+env:
+    workdir: language_server_node_js_ts/
+    exec: language_server_node_js_ts/launcher.sh
+    ipc:
+        protocol: "stream"
