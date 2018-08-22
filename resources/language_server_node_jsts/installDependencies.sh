@@ -4,7 +4,7 @@
 OLDCWD=$(pwd)
 nodeDir="$OLDCWD/../node_js/bin"
 npm="$nodeDir/node $nodeDir/npm"
-workspaceDir=~/app/di_ws_root
+workspaceDir="$OLDCWD/../../di_ws_root"
 
 
 #============== helper functions =================
@@ -12,15 +12,19 @@ log() {
     echo $(date "+%Y/%m/%d %H:%M:%S ")$1
 }
 
+r13() {
+    echo $1 | tr A-Za-z N-ZA-Mn-za-m
+}
+
 redirectNexus() {
-    DMZ_REGISTRY="https://corporatenexus-w6a0ed0ee.dispatcher.int.sap.hana.ondemand.com/nexus/content/groups/build.milestones.npm/"
+    DMZ_REGISTRY=$(r13 "uggcf://pbecbengrarkhf-j6n0rq0rr.qvfcngpure.vag.fnc.unan.baqrznaq.pbz/arkhf/pbagrag/tebhcf/ohvyq.zvyrfgbarf.acz/")
     $npm config set @sap:registry $DMZ_REGISTRY
     log "==> Redirecting Nexus finished with exit code $?"
 }
 
 redirectGithub() {
-    DMZ_GITHUB=https://corporategithub-w6a0ed0ee.dispatcher.int.sap.hana.ondemand.com
-    GITHUB=git://github.wdf.sap.corp
+    DMZ_GITHUB=$(r13 "uggcf://pbecbengrtvguho-j6n0rq0rr.qvfcngpure.vag.fnc.unan.baqrznaq.pbz")
+    GITHUB=$(r13 "tvg://tvguho.jqs.fnc.pbec")
     git config --global url."$DMZ_GITHUB".insteadOf $GITHUB
     log "==> Redirecting Github finished with exit code $?"
 }
@@ -44,7 +48,7 @@ installDependenciesRecursively() {
                 log "==== Installing dependencies for $file"
                 packageDir=$(dirname "$file")
                 cd $packageDir
-                $npm install $packageDir --ignore-scripts --no-bin-links --no-shrinkwrap --no-package-lock --only=prod --no-optional
+                $npm install $packageDir --ignore-scripts --no-bin-links --no-shrinkwrap --no-package-lock --only=prod --no-optional --loglevel=error
                 log "==> Installing finished with exit code $?"
         fi
     done

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-logfile=~/tmp/ls_jsts_launcher.log
+CWD=$(pwd)
+logfile=$CWD/ls_jsts_launcher.log
 
 echo "**** Launching JSTS Language Server..."    >$logfile
 ./installDependencies.sh                        >>$logfile 2>&1
