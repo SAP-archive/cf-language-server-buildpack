@@ -14,9 +14,11 @@ else
     mkdir -p $HOME/jdt_ws_root/$moduleWs
 fi
     exec $JAVA_HOME/bin/java \
-    -Dcom.sun.management.jmxremote.port=5000 \
+    -Dcom.sun.management.jmxremote \
+    -Dcom.sun.management.jmxremote.port=5001 \
     -Dcom.sun.management.jmxremote.authenticate=false \
     -Dcom.sun.management.jmxremote.ssl=false \
+    -Dcom.sun.management.jmxremote.rmi.port=5001 \
     -Declipse.application=org.eclipse.jdt.ls.core.id1 \
     -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product \
     -Dlog.protocol=true \
@@ -30,9 +32,11 @@ fi
     -data $HOME/jdt_ws_root/$moduleWs
 else
     exec $JAVA_HOME/bin/java \
-    -Dcom.sun.management.jmxremote.port=5000 \
+    -Dcom.sun.management.jmxremote \
+    -Dcom.sun.management.jmxremote.port=5001 \
     -Dcom.sun.management.jmxremote.authenticate=false \
     -Dcom.sun.management.jmxremote.ssl=false \
+    -Dcom.sun.management.jmxremote.rmi.port=5001 \
     -Declipse.application=org.eclipse.jdt.ls.core.id1 \
     -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product \
     -Dlog.protocol=true \
