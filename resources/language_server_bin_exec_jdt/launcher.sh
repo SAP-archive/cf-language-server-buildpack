@@ -20,7 +20,7 @@ fi
     -Duser.home=$HOME \
     -noverify \
     -Xmx350M -XX:+UseG1GC -XX:+UseStringDeduplication \
-    -XX:MaxMetaspaceSize=50M \
+    -XX:MaxMetaspaceSize=350M \
     -javaagent:./lombok.jar -Xbootclasspath/a:./lombok.jar \
     -jar ./plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar \
     -configuration ./config_linux \
@@ -33,7 +33,7 @@ else
     -Duser.home=$HOME \
     -noverify \
     -Xmx350M -XX:+UseG1GC -XX:+UseStringDeduplication \
-    -XX:MaxMetaspaceSize=50M \
+    -XX:MaxMetaspaceSize=350M \
     -javaagent:./lombok.jar -Xbootclasspath/a:./lombok.jar \
     -jar ./plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar \
     -configuration ./config_linux \
