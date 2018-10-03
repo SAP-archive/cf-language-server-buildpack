@@ -31,8 +31,8 @@ else
     -Declipse.product=org.eclipse.jdt.ls.core.product \
     -Duser.home=$HOME \
     -noverify \
-    -javaagent:./lombok.jar -Xbootclasspath/a:./lombok.jar \
     -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication \
+    -javaagent:./lombok.jar -Xbootclasspath/a:./lombok.jar \
     -jar ./plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar \
     -configuration ./config_linux \
     -data $HOME/jdt_ws_root
