@@ -14,33 +14,25 @@ else
     mkdir -p $HOME/jdt_ws_root/$moduleWs
 fi
     exec $JAVA_HOME/bin/java \
-    -Dcom.sun.management.jmxremote \
-    -Dcom.sun.management.jmxremote.port=5001 \
-    -Dcom.sun.management.jmxremote.authenticate=false \
-    -Dcom.sun.management.jmxremote.ssl=false \
-    -Dcom.sun.management.jmxremote.rmi.port=5001 \
     -Declipse.application=org.eclipse.jdt.ls.core.id1 \
-    -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product \
-    -Dlog.protocol=true \
-    -Dlog.level=ALL \
+    -Dosgi.bundles.defaultStartLevel=4 \
+    -Declipse.product=org.eclipse.jdt.ls.core.product \
+    #-Dlog.protocol=true \
+    #-Dlog.level=ALL \
     -Duser.home=$HOME \
     -noverify \
+     Xmx350M -XX:+UseG1GC -XX:+UseStringDeduplication \
     -javaagent:./lombok.jar -Xbootclasspath/a:./lombok.jar \
-    -Xmx350M -XX:+UseG1GC -XX:+UseStringDeduplication \
     -jar ./plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar \
     -configuration ./config_linux \
     -data $HOME/jdt_ws_root/$moduleWs
 else
     exec $JAVA_HOME/bin/java \
-    -Dcom.sun.management.jmxremote \
-    -Dcom.sun.management.jmxremote.port=5001 \
-    -Dcom.sun.management.jmxremote.authenticate=false \
-    -Dcom.sun.management.jmxremote.ssl=false \
-    -Dcom.sun.management.jmxremote.rmi.port=5001 \
     -Declipse.application=org.eclipse.jdt.ls.core.id1 \
-    -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product \
-    -Dlog.protocol=true \
-    -Dlog.level=ALL \
+    -Dosgi.bundles.defaultStartLevel=4 \
+    -Declipse.product=org.eclipse.jdt.ls.core.product \
+    #-Dlog.protocol=true \
+    #-Dlog.level=ALL \
     -Duser.home=$HOME \
     -noverify \
     -javaagent:./lombok.jar -Xbootclasspath/a:./lombok.jar \
