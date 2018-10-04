@@ -31,7 +31,7 @@ containers:
 jres:
 # - "JavaBuildpack::Jre::IbmJRE"
 # - "JavaBuildpack::Jre::OpenJdkJRE"
- - "JavaBuildpack::Jre::OracleJRE"
+  - "JavaBuildpack::Jre::OracleJRE"
 # - "JavaBuildpack::Jre::ZuluJRE"
 # - "JavaBuildpack::Jre::SapMachineJRE"
 
