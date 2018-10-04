@@ -30,8 +30,8 @@ containers:
 # Please see the documentation for more detail.
 jres:
 # - "JavaBuildpack::Jre::IbmJRE"
-  - "JavaBuildpack::Jre::OpenJdkJRE"
-# - "JavaBuildpack::Jre::OracleJRE"
+# - "JavaBuildpack::Jre::OpenJdkJRE"
+ - "JavaBuildpack::Jre::OracleJRE"
 # - "JavaBuildpack::Jre::ZuluJRE"
 # - "JavaBuildpack::Jre::SapMachineJRE"
 
