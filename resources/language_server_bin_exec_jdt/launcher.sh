@@ -19,7 +19,7 @@ fi
     -Declipse.product=org.eclipse.jdt.ls.core.product \
     -Duser.home=$HOME \
     -noverify \
-    -Xmx350M -XX:+UseStringDeduplication \
+    -Xmx350M \
     -javaagent:./lombok.jar -Xbootclasspath/a:./lombok.jar \
     -jar ./plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar \
     -configuration ./config_linux \
@@ -31,7 +31,7 @@ else
     -Declipse.product=org.eclipse.jdt.ls.core.product \
     -Duser.home=$HOME \
     -noverify \
-    -Xmx350M -XX:+UseStringDeduplication \
+    -Xmx350M \
     -javaagent:./lombok.jar -Xbootclasspath/a:./lombok.jar \
     -jar ./plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar \
     -configuration ./config_linux \
