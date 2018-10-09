@@ -15,9 +15,5 @@
 
 # Configuration for the JaCoco Agent framework
 ---
-<<<<<<< HEAD:config/jacoco_agent.yml
-version: 0.+
-=======
 version: 0.8.2
->>>>>>> v4.16:config/jacoco_agent.yml
 repository_root: "{default.repository.root}/jacoco"

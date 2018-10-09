@@ -51,13 +51,9 @@
       <w>libcklog</w>
       <w>libcrpytoki</w>
       <w>libcryptoki</w>
-<<<<<<< HEAD
-      <w>libjvm</w>
-=======
       <w>libjprofilerti</w>
       <w>libjvm</w>
       <w>librpilj</w>
->>>>>>> v4.16
       <w>libruxitagentloader</w>
       <w>libyjpagent</w>
       <w>ljust</w>

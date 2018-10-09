@@ -7,11 +7,7 @@ AllCops:
   # - 'rakelib/**/*'
   Exclude:
   - 'build/**/*'
-<<<<<<< HEAD
-  - Gemfile
-=======
   # - Gemfile
->>>>>>> v4.16
 Layout/EmptyLinesAroundBlockBody:
   Exclude:
   - 'spec/**/*.rb'
@@ -40,11 +36,6 @@ Metrics/PerceivedComplexity:
   Max: 10
 Naming/UncommunicativeMethodParamName:
   Enabled: false
-<<<<<<< HEAD
-RSpec/ExampleLength:
-  Max: 20
-=======
->>>>>>> v4.16
 RSpec/AnyInstance:
   Enabled: false
 RSpec/ExampleLength:
@@ -64,12 +55,6 @@ Security/Open:
 Style/Documentation:
   Enabled: false
 Style/FormatStringToken:
-<<<<<<< HEAD
-  Enabled: false
-Style/MethodMissing:
-  Enabled: false
-=======
   Enabled: false
 Style/MethodMissingSuper:
   Enabled: false
->>>>>>> v4.16

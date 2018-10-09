@@ -46,11 +46,7 @@ describe JavaBuildpack::Component::ExtensionDirectories do
 
   it 'renders empty string if path is empty' do
     extension_directories.clear
-<<<<<<< HEAD
-    expect(extension_directories.as_paths).not_to be
-=======
     expect(extension_directories.as_paths).not_to be_truthy
->>>>>>> v4.16
   end
 
 end

@@ -24,15 +24,6 @@ external_configuration:
   version: 1.+
   repository_root: 
 lifecycle_support:
-<<<<<<< HEAD
-  version: 3.+
-  repository_root: "{default.repository.root}/tomcat-lifecycle-support"
-logging_support:
-  version: 3.+
-  repository_root: "{default.repository.root}/tomcat-logging-support"
-access_logging_support:
-  version: 3.+
-=======
   version: 3.2.0_RELEASE
   repository_root: "{default.repository.root}/tomcat-lifecycle-support"
 logging_support:
@@ -40,7 +31,6 @@ logging_support:
   repository_root: "{default.repository.root}/tomcat-logging-support"
 access_logging_support:
   version: 3.2.0_RELEASE
->>>>>>> v4.16
   repository_root: "{default.repository.root}/tomcat-access-logging-support"
   access_logging: disabled
 redis_store:
@@ -50,9 +40,5 @@ redis_store:
   timeout: 2000
   connection_pool_size: 2
 geode_store:
-<<<<<<< HEAD
-  version: 0.+
-=======
   version: 0.0.2
->>>>>>> v4.16
   repository_root: https://repo.spring.io/ext-release-local/geode-store

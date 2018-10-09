@@ -107,11 +107,7 @@ module JavaBuildpack
             recv_timeout    = #{recv_timeout}
             retries         = #{retries}
             ha_mode_standby = 1
-<<<<<<< HEAD
-CONFIG
-=======
           CONFIG
->>>>>>> v4.16
         end
       end
 

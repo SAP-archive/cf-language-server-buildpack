@@ -44,10 +44,6 @@ module JavaBuildpack
         end
 
         return if trust_manager_enabled.nil?
-<<<<<<< HEAD
-=======
-
->>>>>>> v4.16
         @droplet.java_opts.add_system_property 'org.cloudfoundry.security.trustmanager.enabled', trust_manager_enabled
       end
 

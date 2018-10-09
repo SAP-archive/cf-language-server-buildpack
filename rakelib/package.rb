@@ -33,11 +33,7 @@ module Package
 
   BUILDPACK_VERSION = JavaBuildpack::BuildpackVersion.new(false).freeze
 
-<<<<<<< HEAD
-  PLATFORMS = %w[trusty].freeze
-=======
   PLATFORMS = %w[bionic trusty].freeze
->>>>>>> v4.16
 
   STAGING_DIR = "#{BUILD_DIR}/staging"
 
