@@ -30,10 +30,6 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         return unless supports?
-<<<<<<< HEAD
-=======
-
->>>>>>> v4.16
         download_tar(false, tomcat_lib, tar_name)
         mutate_context
         mutate_server
@@ -43,10 +39,6 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
         return unless supports?
-<<<<<<< HEAD
-=======
-
->>>>>>> v4.16
         credentials = @application.services.find_service(FILTER, KEY_LOCATORS, KEY_USERS)['credentials']
         user = credentials[KEY_USERS].find { |u| cluster_operator?(u) }
 

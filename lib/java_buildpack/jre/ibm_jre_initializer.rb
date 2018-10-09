@@ -177,10 +177,6 @@ module JavaBuildpack
       def heap_ratio_verification(ratio)
         raise 'Invalid heap ratio' unless ratio.is_a? Numeric
         raise 'heap ratio cannot be greater than 100%' unless ratio <= 1
-<<<<<<< HEAD
-=======
-
->>>>>>> v4.16
         ratio
       end
 

@@ -77,10 +77,6 @@ module JavaBuildpack
 
       def add_system_prop_if_config_present(config_entry, system_property_name)
         return unless @configuration.key?(config_entry)
-<<<<<<< HEAD
-=======
-
->>>>>>> v4.16
         @droplet.java_opts.add_system_property(system_property_name, @configuration[config_entry])
       end
 
@@ -91,10 +87,6 @@ module JavaBuildpack
       def normalized_log_level
         normalized_log_level = LOG_LEVEL_MAPPING[log_level.upcase]
         raise "Invalid value of the 'log_level' property: '#{log_level}'" unless normalized_log_level
-<<<<<<< HEAD
-=======
-
->>>>>>> v4.16
         normalized_log_level
       end
 

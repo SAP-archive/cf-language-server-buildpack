@@ -52,15 +52,6 @@ describe JavaBuildpack::Util::SpringBootUtils do
      app_fixture: 'container_main_spring_boot_thin_launcher' do
 
     expect(utils).to be_thin(application)
-<<<<<<< HEAD
-  end
-
-  it 'determines if an application is a thin application',
-     app_fixture: 'container_main_spring_boot_thin_launcher' do
-
-    expect(utils.thin?(application)).to be
-=======
->>>>>>> v4.16
   end
 
   it 'determines the version of a dist Spring Boot application',

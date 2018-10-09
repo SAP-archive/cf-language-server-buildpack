@@ -50,13 +50,6 @@ describe JavaBuildpack::Component::ImmutableJavaHome do
 
   it 'returns the delegate Java 9 or later' do
     expect(immutable_java_home).to be_java_9_or_later
-<<<<<<< HEAD
-  end
-
-  it 'returns the delegate Java 9 or later' do
-    expect(immutable_java_home.java_9_or_later?).to be
-=======
->>>>>>> v4.16
   end
 
 end
