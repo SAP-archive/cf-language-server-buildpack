@@ -61,11 +61,19 @@ module JavaBuildpack
           @logger.warn { "Dynatrace OneAgent injection disabled due to download error: #{File.read(error_file)}" }
           return
         end
+<<<<<<< HEAD
 
         manifest = agent_manifest
 
         @droplet.java_opts.add_agentpath(agent_path(manifest))
 
+=======
+
+        manifest = agent_manifest
+
+        @droplet.java_opts.add_agentpath(agent_path(manifest))
+
+>>>>>>> v4.16
         dynatrace_environment_variables(manifest)
       end
 
@@ -79,6 +87,7 @@ module JavaBuildpack
       private
 
       APIURL = 'apiurl'
+<<<<<<< HEAD
 
       APITOKEN = 'apitoken'
 
@@ -87,6 +96,14 @@ module JavaBuildpack
       DT_CONNECTION_POINT = 'DT_CONNECTION_POINT'
 
       DT_HOST_ID = 'DT_HOST_ID'
+=======
+
+      APITOKEN = 'apitoken'
+
+      DT_APPLICATION_ID = 'DT_APPLICATIONID'
+
+      DT_CONNECTION_POINT = 'DT_CONNECTION_POINT'
+>>>>>>> v4.16
 
       DT_TENANT = 'DT_TENANT'
 
@@ -98,7 +115,11 @@ module JavaBuildpack
 
       SKIP_ERRORS = 'skiperrors'
 
+<<<<<<< HEAD
       private_constant :APIURL, :APITOKEN, :DT_APPLICATION_ID, :DT_CONNECTION_POINT, :DT_HOST_ID, :DT_TENANT,
+=======
+      private_constant :APIURL, :APITOKEN, :DT_APPLICATION_ID, :DT_CONNECTION_POINT, :DT_TENANT,
+>>>>>>> v4.16
                        :DT_TENANTTOKEN, :ENVIRONMENTID, :FILTER, :SKIP_ERRORS
 
       def agent_download_url
@@ -128,6 +149,7 @@ module JavaBuildpack
 
       def application_id?
         @application.environment.key?(DT_APPLICATION_ID)
+<<<<<<< HEAD
       end
 
       def credentials
@@ -162,14 +184,46 @@ module JavaBuildpack
             unpack_agent root_path
           end
         end
+=======
+>>>>>>> v4.16
       end
 
-      def host_id
-        "#{@application.details['application_name']}_${CF_INSTANCE_INDEX}"
+      def credentials
+        @application.services.find_service(FILTER, APITOKEN, ENVIRONMENTID)['credentials']
       end
 
+      def dynatrace_environment_variables(manifest)
+        environment_variables = @droplet.environment_variables
+
+        environment_variables
+          .add_environment_variable(DT_TENANT, credentials[ENVIRONMENTID])
+          .add_environment_variable(DT_TENANTTOKEN, tenanttoken(manifest))
+          .add_environment_variable(DT_CONNECTION_POINT, endpoints(manifest))
+
+        environment_variables.add_environment_variable(DT_APPLICATION_ID, application_id) unless application_id?
+      end
+
+<<<<<<< HEAD
       def host_id?
         @application.environment.key?(DT_HOST_ID)
+=======
+      def endpoints(manifest)
+        "\"#{manifest['communicationEndpoints'].join(';')}\""
+      end
+
+      def error_file
+        @droplet.sandbox + 'dynatrace_download_error'
+      end
+
+      def expand(file)
+        with_timing "Expanding Dynatrace OneAgent to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
+          Dir.mktmpdir do |root|
+            root_path = Pathname.new(root)
+            shell "unzip -qq #{file.path} -d #{root_path} 2>&1"
+            unpack_agent root_path
+          end
+        end
+>>>>>>> v4.16
       end
 
       def skip_errors?

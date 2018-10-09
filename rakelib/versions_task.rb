@@ -51,6 +51,7 @@ module Package
     DEFAULT_REPOSITORY_ROOT_PATTERN = /\{default.repository.root\}/
 
     NAME_MAPPINGS = {
+<<<<<<< HEAD
       'access_logging_support'              => 'Tomcat Access Logging Support',
       'agent'                               => 'Java Memory Assistant Agent',
       'app_dynamics_agent'                  => 'AppDynamics Agent',
@@ -86,6 +87,47 @@ module Package
       'takipi_agent'                        => 'Takipi Agent',
       'tomcat'                              => 'Tomcat',
       'your_kit_profiler'                   => 'YourKit Profiler'
+=======
+      'access_logging_support'        => 'Tomcat Access Logging Support',
+      'agent'                         => 'Java Memory Assistant Agent',
+      'app_dynamics_agent'            => 'AppDynamics Agent',
+      'clean_up'                      => 'Java Memory Assistant Clean Up',
+      'client_certificate_mapper'     => 'Client Certificate Mapper',
+      'container_customizer'          => 'Spring Boot Container Customizer',
+      'container_security_provider'   => 'Container Security Provider',
+      'contrast_security_agent'       => 'Contrast Security Agent',
+      'dyadic_ekm_security_provider'  => 'Dyadic EKM Security Provider',
+      'dynatrace_appmon_agent'        => 'Dynatrace Appmon Agent',
+      'dynatrace_one_agent'           => 'Dynatrace OneAgent',
+      'geode_store'                   => 'Geode Tomcat Session Store',
+      'google_stackdriver_debugger'   => 'Google Stackdriver Debugger',
+      'google_stackdriver_profiler'   => 'Google Stackdriver Profiler',
+      'groovy'                        => 'Groovy',
+      'introscope_agent'              => 'CA Introscope APM Framework',
+      'jacoco_agent'                  => 'JaCoCo Agent',
+      'jprofiler_profiler'            => 'JProfiler Profiler',
+      'jre'                           => 'OpenJDK JRE',
+      'jre-11'                        => 'OpenJDK JRE 11',
+      'jrebel_agent'                  => 'JRebel Agent',
+      'jvmkill_agent'                 => 'jvmkill Agent',
+      'lifecycle_support'             => 'Tomcat Lifecycle Support',
+      'logging_support'               => 'Tomcat Logging Support',
+      'luna_security_provider'        => 'Gemalto Luna Security Provider',
+      'maria_db_jdbc'                 => 'MariaDB JDBC Driver',
+      'memory_calculator'             => 'Memory Calculator',
+      'metric_writer'                 => 'Metric Writer',
+      'new_relic_agent'               => 'New Relic Agent',
+      'postgresql_jdbc'               => 'PostgreSQL JDBC Driver',
+      'protect_app_security_provider' => 'Gemalto ProtectApp Security Provider',
+      'redis_store'                   => 'Redis Session Store',
+      'riverbed_appinternals_agent'   => 'Riverbed Appinternals Agent',
+      'sky_walking_agent'             => 'SkyWalking',
+      'spring_auto_reconfiguration'   => 'Spring Auto-reconfiguration',
+      'spring_boot_cli'               => 'Spring Boot CLI',
+      'takipi_agent'                  => 'Takipi Agent',
+      'tomcat'                        => 'Tomcat',
+      'your_kit_profiler'             => 'YourKit Profiler'
+>>>>>>> v4.16
     }.freeze
 
     PLATFORM_PATTERN = /\{platform\}/
@@ -150,6 +192,18 @@ module Package
       if repository_configuration?(configuration)
         configuration['component_id']     = component_id
         configuration['sub_component_id'] = sub_component_id if sub_component_id
+<<<<<<< HEAD
+=======
+
+        if component_id == 'open_jdk_jre' && sub_component_id == 'jre'
+          c1 = configuration.clone
+          c1['sub_component_id'] = 'jre-11'
+          c1['version'] = '11.+'
+
+          configurations << c1
+        end
+
+>>>>>>> v4.16
         configurations << configuration
       else
         configuration.each { |k, v| configurations << configurations(component_id, v, k) if v.is_a? Hash }
@@ -200,7 +254,13 @@ module Package
         end
       end
 
+<<<<<<< HEAD
       dependency_versions.sort_by { |dependency| dependency['id'] }
+=======
+      dependency_versions
+        .uniq { |dependency| dependency['id'] }
+        .sort_by { |dependency| dependency['id'] }
+>>>>>>> v4.16
     end
 
     def index_configuration(configuration)

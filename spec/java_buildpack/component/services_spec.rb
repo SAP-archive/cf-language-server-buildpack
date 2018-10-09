@@ -168,6 +168,7 @@ describe JavaBuildpack::Component::Services do
       end
 
       it 'returns false from one_service? if there is no service that matches' do
+<<<<<<< HEAD
         expect(services.one_service?('bad-test')).not_to be
         expect(services.one_service?(/bad-test/)).not_to be
       end
@@ -210,6 +211,50 @@ describe JavaBuildpack::Component::Services do
       it 'returns false from one_service? if there is a matching service with no required group credentials' do
         expect(services.one_service?('test-tag', %w[foo bar])).not_to be
         expect(services.one_service?(/test-tag/, %w[foo bar])).not_to be
+=======
+        expect(services).not_to be_one_service('bad-test')
+        expect(services).not_to be_one_service(/bad-test/)
+      end
+
+      it 'returns true from one_service? if there is a matching name' do
+        expect(services).to be_one_service('test-name')
+        expect(services).to be_one_service(/test-name/)
+      end
+
+      it 'returns true from one_service? if there is a matching label' do
+        expect(services).to be_one_service('test-label')
+        expect(services).to be_one_service(/test-label/)
+      end
+
+      it 'returns true from one_service? if there is a matching tag' do
+        expect(services).to be_one_service('test-tag')
+        expect(services).to be_one_service(/test-tag/)
+      end
+
+      it 'returns false from one_service? if there is a matching service without required credentials' do
+        expect(services).not_to be_one_service('test-tag', 'bad-credential')
+        expect(services).not_to be_one_service(/test-tag/, 'bad-credential')
+      end
+
+      it 'returns true from one_service? if there is a matching service with required credentials' do
+        expect(services).to be_one_service('test-tag', 'uri')
+        expect(services).to be_one_service(/test-tag/, 'uri')
+      end
+
+      it 'returns true from one_service? if there is a matching service with one required group credentials' do
+        expect(services).to be_one_service('test-tag', %w[uri other])
+        expect(services).to be_one_service(/test-tag/, %w[uri other])
+      end
+
+      it 'returns true from one_service? if there is a matching service with two required group credentials' do
+        expect(services).to be_one_service('test-tag', %w[h1 h2])
+        expect(services).to be_one_service(/test-tag/, %w[h1 h2])
+      end
+
+      it 'returns false from one_service? if there is a matching service with no required group credentials' do
+        expect(services).not_to be_one_service('test-tag', %w[foo bar])
+        expect(services).not_to be_one_service(/test-tag/, %w[foo bar])
+>>>>>>> v4.16
       end
 
     end
@@ -223,6 +268,7 @@ describe JavaBuildpack::Component::Services do
       end
 
       it 'returns false from one_service? if there is no service that matches' do
+<<<<<<< HEAD
         expect(services.one_service?('bad-test')).not_to be
         expect(services.one_service?(/bad-test/)).not_to be
       end
@@ -265,6 +311,50 @@ describe JavaBuildpack::Component::Services do
       it 'returns false from one_service? if there is a matching service with no required group credentials' do
         expect(services.one_service?('test-tag', %w[foo bar])).not_to be
         expect(services.one_service?(/test-tag/, %w[foo bar])).not_to be
+=======
+        expect(services).not_to be_one_service('bad-test')
+        expect(services).not_to be_one_service(/bad-test/)
+      end
+
+      it 'returns true from one_service? if there is a matching name' do
+        expect(services).to be_one_service('test-name')
+        expect(services).to be_one_service(/test-name/)
+      end
+
+      it 'returns true from one_service? if there is a matching label' do
+        expect(services).to be_one_service('test-label')
+        expect(services).to be_one_service(/test-label/)
+      end
+
+      it 'returns true from one_service? if there is a matching tag' do
+        expect(services).to be_one_service('test-tag')
+        expect(services).to be_one_service(/test-tag/)
+      end
+
+      it 'returns false from one_service? if there is a matching service without required credentials' do
+        expect(services).not_to be_one_service('test-tag', 'bad-credential')
+        expect(services).not_to be_one_service(/test-tag/, 'bad-credential')
+      end
+
+      it 'returns true from one_service? if there is a matching service with required credentials' do
+        expect(services).to be_one_service('test-tag', 'uri')
+        expect(services).to be_one_service(/test-tag/, 'uri')
+      end
+
+      it 'returns true from one_service? if there is a matching service with one required group credentials' do
+        expect(services).to be_one_service('test-tag', %w[uri other])
+        expect(services).to be_one_service(/test-tag/, %w[uri other])
+      end
+
+      it 'returns true from one_service? if there is a matching service with two required group credentials' do
+        expect(services).to be_one_service('test-tag', %w[h1 h2])
+        expect(services).to be_one_service(/test-tag/, %w[h1 h2])
+      end
+
+      it 'returns false from one_service? if there is a matching service with no required group credentials' do
+        expect(services).not_to be_one_service('test-tag', %w[foo bar])
+        expect(services).not_to be_one_service(/test-tag/, %w[foo bar])
+>>>>>>> v4.16
       end
 
     end
@@ -280,6 +370,7 @@ describe JavaBuildpack::Component::Services do
       end
 
       it 'returns true from one_volume_service? if there is a matching name and empty volume_mounts' do
+<<<<<<< HEAD
         expect(services.one_volume_service?('test-name')).not_to be
         expect(services.one_volume_service?(/test-name/)).not_to be
       end
@@ -292,6 +383,20 @@ describe JavaBuildpack::Component::Services do
       it 'returns false from one_volume_service? if there is a matching tag and empty volume_mounts' do
         expect(services.one_volume_service?('test-tag')).not_to be
         expect(services.one_volume_service?(/test-tag/)).not_to be
+=======
+        expect(services).not_to be_one_volume_service('test-name')
+        expect(services).not_to be_one_volume_service(/test-name/)
+      end
+
+      it 'returns true from one_volume_service? if there is a matching label and empty volume_mounts' do
+        expect(services).not_to be_one_volume_service('test-label')
+        expect(services).not_to be_one_volume_service(/test-label/)
+      end
+
+      it 'returns false from one_volume_service? if there is a matching tag and empty volume_mounts' do
+        expect(services).not_to be_one_volume_service('test-tag')
+        expect(services).not_to be_one_volume_service(/test-tag/)
+>>>>>>> v4.16
       end
 
     end
@@ -304,6 +409,7 @@ describe JavaBuildpack::Component::Services do
       end
 
       it 'returns true from one_volume_service? if there is a matching name and empty volume_mounts' do
+<<<<<<< HEAD
         expect(services.one_volume_service?('test-name')).not_to be
         expect(services.one_volume_service?(/test-name/)).not_to be
       end
@@ -316,6 +422,20 @@ describe JavaBuildpack::Component::Services do
       it 'returns false from one_volume_service? if there is a matching tag and empty volume_mounts' do
         expect(services.one_volume_service?('test-tag')).not_to be
         expect(services.one_volume_service?(/test-tag/)).not_to be
+=======
+        expect(services).not_to be_one_volume_service('test-name')
+        expect(services).not_to be_one_volume_service(/test-name/)
+      end
+
+      it 'returns true from one_volume_service? if there is a matching label and empty volume_mounts' do
+        expect(services).not_to be_one_volume_service('test-label')
+        expect(services).not_to be_one_volume_service(/test-label/)
+      end
+
+      it 'returns false from one_volume_service? if there is a matching tag and empty volume_mounts' do
+        expect(services).not_to be_one_volume_service('test-tag')
+        expect(services).not_to be_one_volume_service(/test-tag/)
+>>>>>>> v4.16
       end
 
     end
@@ -330,6 +450,7 @@ describe JavaBuildpack::Component::Services do
       end
 
       it 'returns true from one_volume_service? if there is a matching name and empty volume_mounts' do
+<<<<<<< HEAD
         expect(services.one_volume_service?('test-name')).to be
         expect(services.one_volume_service?(/test-name/)).to be
       end
@@ -342,6 +463,20 @@ describe JavaBuildpack::Component::Services do
       it 'returns false from one_volume_service? if there is a matching tag and empty volume_mounts' do
         expect(services.one_volume_service?('test-tag')).to be
         expect(services.one_volume_service?(/test-tag/)).to be
+=======
+        expect(services).to be_one_volume_service('test-name')
+        expect(services).to be_one_volume_service(/test-name/)
+      end
+
+      it 'returns true from one_volume_service? if there is a matching label and empty volume_mounts' do
+        expect(services).to be_one_volume_service('test-label')
+        expect(services).to be_one_volume_service(/test-label/)
+      end
+
+      it 'returns false from one_volume_service? if there is a matching tag and empty volume_mounts' do
+        expect(services).to be_one_volume_service('test-tag')
+        expect(services).to be_one_volume_service(/test-tag/)
+>>>>>>> v4.16
       end
 
     end
@@ -359,6 +494,7 @@ describe JavaBuildpack::Component::Services do
       end
 
       it 'returns true from one_volume_service? if there is a matching name and empty volume_mounts' do
+<<<<<<< HEAD
         expect(services.one_volume_service?('test-name')).not_to be
         expect(services.one_volume_service?(/test-name/)).not_to be
       end
@@ -371,6 +507,20 @@ describe JavaBuildpack::Component::Services do
       it 'returns false from one_volume_service? if there is a matching tag and empty volume_mounts' do
         expect(services.one_volume_service?('test-tag')).not_to be
         expect(services.one_volume_service?(/test-tag/)).not_to be
+=======
+        expect(services).not_to be_one_volume_service('test-name')
+        expect(services).not_to be_one_volume_service(/test-name/)
+      end
+
+      it 'returns true from one_volume_service? if there is a matching label and empty volume_mounts' do
+        expect(services).not_to be_one_volume_service('test-label')
+        expect(services).not_to be_one_volume_service(/test-label/)
+      end
+
+      it 'returns false from one_volume_service? if there is a matching tag and empty volume_mounts' do
+        expect(services).not_to be_one_volume_service('test-tag')
+        expect(services).not_to be_one_volume_service(/test-tag/)
+>>>>>>> v4.16
       end
 
     end

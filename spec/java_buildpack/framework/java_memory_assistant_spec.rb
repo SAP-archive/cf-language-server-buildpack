@@ -37,7 +37,11 @@ describe JavaBuildpack::Framework::JavaMemoryAssistant do
     end
 
     it 'does not activate submodules if it is disabled in the configuration' do
+<<<<<<< HEAD
       expect(component.detect).not_to be
+=======
+      expect(component.detect).not_to be_truthy
+>>>>>>> v4.16
     end
 
   end

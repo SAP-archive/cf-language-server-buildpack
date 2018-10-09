@@ -109,8 +109,15 @@ module JavaBuildpack
       def memory_limit_finder
         memory_limit = ENV['MEMORY_LIMIT']
         return nil unless memory_limit
+<<<<<<< HEAD
         memory_limit_size = memory_size_bytes(memory_limit)
         raise "Invalid negative $MEMORY_LIMIT #{memory_limit}" if memory_limit_size.negative?
+=======
+
+        memory_limit_size = memory_size_bytes(memory_limit)
+        raise "Invalid negative $MEMORY_LIMIT #{memory_limit}" if memory_limit_size.negative?
+
+>>>>>>> v4.16
         memory_limit_size
       end
 
@@ -119,9 +126,17 @@ module JavaBuildpack
           bytes = 0
         else
           raise "Invalid memory size '#{size}'" if !size || size.length < 2
+<<<<<<< HEAD
           unit  = size[-1]
           value = size[0..-2]
           raise "Invalid memory size '#{size}'" unless check_is_integer? value
+=======
+
+          unit  = size[-1]
+          value = size[0..-2]
+          raise "Invalid memory size '#{size}'" unless check_is_integer? value
+
+>>>>>>> v4.16
           value = size.to_i
           # store the bytes
           bytes = calculate_bytes(unit, value)
@@ -173,6 +188,10 @@ module JavaBuildpack
       def heap_ratio_verification(ratio)
         raise 'Invalid heap ratio' unless ratio.is_a? Numeric
         raise 'heap ratio cannot be greater than 100%' unless ratio <= 1
+<<<<<<< HEAD
+=======
+
+>>>>>>> v4.16
         ratio
       end
 
