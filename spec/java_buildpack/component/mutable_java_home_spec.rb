@@ -59,6 +59,7 @@ describe JavaBuildpack::Component::MutableJavaHome do
   end
 
   it 'recognizes Java 6 as earlier than Java 9' do
+<<<<<<< HEAD
     mutable_java_home.version = JavaBuildpack::Util::TokenizedVersion.new('1.6.0')
     expect(mutable_java_home).not_to be_java_9_or_later
   end
@@ -81,21 +82,37 @@ describe JavaBuildpack::Component::MutableJavaHome do
   it 'recognizes Java 6 as earlier than Java 9' do
     mutable_java_home.version = JavaBuildpack::Util::TokenizedVersion.new('1.6.0')
     expect(mutable_java_home.java_9_or_later?).not_to be
+=======
+    mutable_java_home.version = JavaBuildpack::Util::TokenizedVersion.new('1.6.0')
+    expect(mutable_java_home).not_to be_java_9_or_later
+>>>>>>> v4.16
   end
 
   it 'recognizes Java 7 as earlier than Java 9' do
     mutable_java_home.version = JavaBuildpack::Util::TokenizedVersion.new('1.7.0')
+<<<<<<< HEAD
     expect(mutable_java_home.java_9_or_later?).not_to be
+=======
+    expect(mutable_java_home).not_to be_java_9_or_later
+>>>>>>> v4.16
   end
 
   it 'recognizes Java 8 as earlier than Java 9' do
     mutable_java_home.version = JavaBuildpack::Util::TokenizedVersion.new('1.8.0')
+<<<<<<< HEAD
     expect(mutable_java_home.java_9_or_later?).not_to be
+=======
+    expect(mutable_java_home).not_to be_java_9_or_later
+>>>>>>> v4.16
   end
 
   it 'recognizes Java 9 as later than or equal to Java 9' do
     mutable_java_home.version = JavaBuildpack::Util::TokenizedVersion.new('9.0.0')
+<<<<<<< HEAD
     expect(mutable_java_home.java_9_or_later?).to be
+=======
+    expect(mutable_java_home).to be_java_9_or_later
+>>>>>>> v4.16
   end
 
 end

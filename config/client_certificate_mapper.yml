@@ -12,19 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+# Container security provider configuration
 ---
-platform: linux
-
-image_resource:
-  type: docker-image
-  source:
-    repository: cfje/java-buildpack
-
-inputs:
-- name: java-buildpack
-
-caches:
-- path: gems
-
-run:
-  path: java-buildpack/ci/versions-json.sh
+version: 1.8.0_RELEASE
+repository_root: "{default.repository.root}/client-certificate-mapper"
