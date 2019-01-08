@@ -10,7 +10,7 @@ else
     moduleWs="___fallback"
 fi
 
-wsPath="$HOME/app/di_ws_root/$moduleWs/___jdt_ws_root"
+wsPath="$HOME/di_ws_root/$moduleWs/___jdt_ws_root"
 
 mkdir -p ${wsPath}
 
