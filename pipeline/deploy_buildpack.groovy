@@ -13,7 +13,7 @@ def createContainerEnv() {
 podTemplate(label: podLabel, containers: [
         containerTemplate(
                 name: 'jnlp',
-                image: 'docker.wdf.sap.corp:50001/sap-production/jnlp:1.0.1',
+                image: 'docker.wdf.sap.corp:50001/sap-production/jnlp-alpine:3.26.1-sap-01',
                 args: '\${computer.jnlpmac} \${computer.name}'
         ),
         containerTemplate(
