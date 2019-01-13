@@ -29,6 +29,6 @@ exec ${JAVA_HOME}/bin/java -Declipse.application=org.eclipse.jdt.ls.core.id1 \
     -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product \
     -Dlog.protocol=true -Dlog.level=ALL -Duser.home=$HOME -noverify -javaagent:./lombok.jar \
     -Xbootclasspath/a:./lombok.jar -Xmx250M -XX:+UseG1GC -XX:+UseStringDeduplication \
-    -jar ./plugins/org.eclipse.equinox.launcher_1.5.100.v20180827-1352.jar \
+    -jar ./plugins/org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar \
     -configuration ./config_linux -data ${WS_DATA_PATH}
 
