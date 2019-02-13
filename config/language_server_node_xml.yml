@@ -1,5 +1,5 @@
 env:
-    workdir: language_server_node_xml/server/
+    workdir: language_server_node_xml/
     exec: language_server_node_xml/launcher.sh
     ipc:
         protocol: "stream"

@@ -1,5 +1,5 @@
 env:
-    workdir: language_server_node_eslint/server/
+    workdir: language_server_node_eslint/
     exec: language_server_node_eslint/launcher.sh
     ipc:
         protocol: "stream"

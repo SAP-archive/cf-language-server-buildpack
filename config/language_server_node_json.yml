@@ -1,5 +1,5 @@
 env:
-    workdir: language_server_node_json/server
+    workdir: language_server_node_json/
     exec: language_server_node_json/launcher.sh
     ipc:
         protocol: "stream"
