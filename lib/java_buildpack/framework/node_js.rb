@@ -9,7 +9,6 @@ require 'java_buildpack/util/qualify_path'
 module JavaBuildpack
   module Framework
 
-    # Installs JDT based LSP server component.
     class NodeJS < JavaBuildpack::Component::BaseComponent
      
       # (see JavaBuildpack::Component::BaseComponent#detect)
@@ -22,13 +21,12 @@ module JavaBuildpack
         version = "8.9.3"
         uri = "https://buildpacks.cloudfoundry.org/dependencies/node/node-8.9.3-linux-x64-3a0877a4.tgz"
         download_tar(version, uri)
-        @droplet.environment_variables
-                .add_environment_variable('PATH', "$PATH:#{qualify_path("node_js/bin", @droplet.root)}")
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
-        
+         @droplet.environment_variables
+                .add_environment_variable("PATH", "$PATH:#{qualify_path("node_js/bin", @droplet.root)}")
       end
      
       private
