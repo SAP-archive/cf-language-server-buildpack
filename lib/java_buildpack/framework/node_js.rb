@@ -5,6 +5,7 @@ require 'java_buildpack/component/base_component'
 require 'java_buildpack/framework'
 require 'java_buildpack/util/dash_case'
 require 'java_buildpack/util/qualify_path'
+require 'pathname'
 
 module JavaBuildpack
   module Framework
@@ -25,8 +26,9 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
-         @droplet.environment_variables
-                .add_environment_variable("PATH", "$PATH:#{qualify_path("node_js/bin", @droplet.root)}")
+        node_bin_path = Pathname.new("node_js/bin")
+        @droplet.environment_variables
+                .add_environment_variable("PATH", "$PATH:#{qualify_path(node_bin_path, @droplet.root)}")
       end
      
       private
