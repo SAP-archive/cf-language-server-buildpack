@@ -11,6 +11,7 @@ module JavaBuildpack
   module Framework
 
     class NodeJS < JavaBuildpack::Component::BaseComponent
+      include JavaBuildpack::Util
      
       # (see JavaBuildpack::Component::BaseComponent#detect)
       def detect
