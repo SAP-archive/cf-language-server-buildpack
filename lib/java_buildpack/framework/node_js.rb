@@ -28,7 +28,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
         #node_bin_path = Pathname.new("node_js/bin")
-        node_bin_path = "/home/vcap/app/.java-buildpack/node_js/bin"
+        node_bin_path = @droplet.sandbox + "node_js/bin"
         @droplet.environment_variables
                 .add_environment_variable("PATH", "$PATH:#{node_bin_path}")
                 #.add_environment_variable("PATH", "$PATH:#{qualify_path(node_bin_path, @droplet.root)}")
