@@ -31,7 +31,7 @@ module JavaBuildpack
         node_bin_path = "$PWD/#{(@droplet.sandbox + 'bin').relative_path_from(@droplet.root)}"
         #node_bin_path = "$PWD/node_js/bin"
         @droplet.environment_variables
-                .add_environment_variable 'PATH', node_bin_path
+                .add_environment_variable "PATH", "$PATH:#{node_bin_path}"
         
         #@droplet.environment_variables
         #        .add_environment_variable 'PATH', "$PWD/#{node_bin_path}:$PATH"
