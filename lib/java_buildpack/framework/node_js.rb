@@ -25,6 +25,7 @@ module JavaBuildpack
         node_bin_path = "$PWD/#{(@droplet.sandbox + 'bin').relative_path_from(@droplet.root)}"
         @droplet.environment_variables
                 .add_environment_variable "PATH", "$PATH:#{node_bin_path}"
+        print "$PATH"
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
