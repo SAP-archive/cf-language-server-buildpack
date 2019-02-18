@@ -34,7 +34,8 @@ module JavaBuildpack
             Dir.chdir("#{@droplet.sandbox}/server"){
               nodedir = @droplet.sandbox + "../node_js"
               deps_hash.each do |key, value|
-                install_dep_command = "#{nodedir}/bin/node #{nodedir}/lib/node_modules/npm/bin/npm-cli.js install #{key}@#{value}"
+                #install_dep_command = "#{nodedir}/bin/node #{nodedir}/lib/node_modules/npm/bin/npm-cli.js install #{key}@#{value}"
+                install_dep_command = "npm install #{key}@#{value}"
                 print "Running #{install_dep_command}\n"
                 command_output = `#{install_dep_command}`
                 print "Result: #{command_output}\n"
