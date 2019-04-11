@@ -80,3 +80,5 @@ frameworks:
 
   - "JavaBuildpack::Framework::LanguageServerNodeCDX"
   - "JavaBuildpack::Framework::LanguageServerNodeJSTS"
+  - "JavaBuildpack::Framework::LanguageServerNodeI18n"
+ 
