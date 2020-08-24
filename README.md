@@ -72,4 +72,4 @@ make sure you have sap-devx-language-server-buildpack-{your version}.git.zip fil
 *Congratulations! you just deployed new version of cf-language-server-buildpack now you can consume it by updating your destention to point to the app newly created buildpack (make sure it will point https://{you app genrete url}/ls-buildpack.git)*
 
 # License
-This buildpack is released under version 2.0 of the [Apache License](https://github.com/SAP/cf-language-server-buildpack/LICENSE).
+This buildpack is released under version 2.0 of the [Apache License](./LICENSES/Apache-2.0.txt).
