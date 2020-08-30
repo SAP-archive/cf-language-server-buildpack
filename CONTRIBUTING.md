@@ -2,6 +2,10 @@ _Have something you'd like to contribute to the buildpack? We welcome pull reque
 
 _Please refer back to this document as a checklist before issuing any pull request; this will save time for everyone!_
 
+## Developer Certificate of Origin (DCO)
+
+Due to legal reasons, contributors will be asked to accept a DCO before they submit the first pull request to this projects, this happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).
+
 ## Understanding the basics
 Not sure what a pull request is, or how to submit one?  Take a look at GitHub's excellent [help documentation][] first.
 
@@ -70,6 +74,10 @@ then be sure to update it to 2016 appropriately
  # Copyright 2013-2016 the original author or authors.
 ```
 
+## Check if the repository is compliant wrt. copyright and licenses
+
+Always check if the repository is compliant wrt. copyright and licenses by using [reuse lint](https://github.com/fsfe/reuse-tool/blob/master/README.md#run-in-docker)
+
 ## Submit RSpec test cases for all behavior changes
 Search the codebase to find related unit tests and add additional test specs within.
 
@@ -89,7 +97,7 @@ Rather, please include your first and last name, properly capitalized, as submit
 Author: First Last <user@mail.com>
 ```
 
-This helps ensure traceability against the CLA, and also goes a long way to ensuring useful output from tools like `git shortlog` and others.
+This helps ensure traceability against the DCO, and also goes a long way to ensuring useful output from tools like `git shortlog` and others.
 
 You can configure this globally via the account admin area GitHub (useful for fork-and-edit cases); globally with
 
@@ -155,7 +163,7 @@ In the body:
 
 1. Explain your use case. What led you to submit this change? Why were existing mechanisms in the buildpack insufficient? Make a case that this is a general-purpose problem and that yours is a general-purpose solution, etc.
 1. Add any additional information and ask questions; start a conversation, or continue one from GitHub issue
-1. Also mention that you have submitted the CLA as described above
+1. Also mention that you have submitted the DCO as described above
 
 Note that for pull requests containing a single commit, GitHub will default the subject line and body of the pull request to match the subject line and body of the commit message. This is fine, but please also include the items above in the body of the request.
 
