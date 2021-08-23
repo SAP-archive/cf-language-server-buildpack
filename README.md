@@ -1,5 +1,7 @@
 # Description
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/cf-language-server-buildpack)](https://api.reuse.software/info/github.com/SAP/cf-language-server-buildpack)
+
 The `cf-language-server-buildpack`, based on `java-buildpack`, is a [Cloud Foundry](http://www.cloudfoundry.org) buildpack for running JVM-based [language servers wrapper](https://github.com/SAP/cloud-language-servers-container) together with language servers adhering to the [language server protocol](https://github.com/Microsoft/language-server-protocol).  The language servers are supported by configuration of custom components providing download of software together with creation of configuration environment variables per language.
 
 # Requirements
@@ -72,4 +74,5 @@ make sure you have sap-devx-language-server-buildpack-{your version}.git.zip fil
 *Congratulations! you just deployed new version of cf-language-server-buildpack now you can consume it by updating your destention to point to the app newly created buildpack (make sure it will point https://{you app genrete url}/ls-buildpack.git)*
 
 # License
-This buildpack is released under version 2.0 of the [Apache License](./LICENSES/Apache-2.0.txt).
+
+Copyright 2019-2021 SAP SE or an SAP affiliate company and cf-language-server-buildpack contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/cf-language-server-buildpack).
