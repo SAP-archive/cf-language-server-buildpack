@@ -1,6 +1,9 @@
-# Description
+![](https://img.shields.io/badge/STATUS-NOT%20CURRENTLY%20MAINTAINED-red.svg?longCache=true&style=flat)
 
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP/cf-language-server-buildpack)](https://api.reuse.software/info/github.com/SAP/cf-language-server-buildpack)
+# Important Notice
+This public repository is read-only and no longer maintained.
+
+# Description
 
 The `cf-language-server-buildpack`, based on `java-buildpack`, is a [Cloud Foundry](http://www.cloudfoundry.org) buildpack for running JVM-based [language servers wrapper](https://github.com/SAP/cloud-language-servers-container) together with language servers adhering to the [language server protocol](https://github.com/Microsoft/language-server-protocol).  The language servers are supported by configuration of custom components providing download of software together with creation of configuration environment variables per language.
 
